@@ -116,15 +116,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AmazonClient.cs" />
+    <Compile Include="Models\AmazonConsumer.cs" />
     <Compile Include="Models\ImageComparer.cs" />
     <Compile Include="Models\Price.cs" />
+    <Compile Include="Models\RainforestKeyManager.cs" />
     <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\RequestResponse.cs" />
     <Compile Include="Models\SearchRequestResponse.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="RainforestKeys.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

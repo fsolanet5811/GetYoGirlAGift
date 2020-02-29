@@ -5,8 +5,10 @@ using System.Web;
 
 namespace GetYoGirlAGift.Models
 {
-    public class SearchRequestResponse : RequestResponse
+    public class RequestResponse
     {
-        public List<SearchResult> SearchResults { get; set; }
+        public int CreditsUsed { get; set; }
+
+        public int CreditsRemaining { get; set; }
     }
 }
