@@ -39,7 +39,7 @@ namespace GetYoGirlAGift.Models
             }
             set
             {
-                _likability = value;
+                _returnChance = value;
             }
         }
 
