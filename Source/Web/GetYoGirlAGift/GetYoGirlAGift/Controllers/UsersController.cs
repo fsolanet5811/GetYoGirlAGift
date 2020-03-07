@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using GetYoGirlAGift.Data;
 using GetYoGirlAGift.Models;
 
 namespace GetYoGirlAGift.Controllers
@@ -18,16 +17,16 @@ namespace GetYoGirlAGift.Controllers
         private GetYoGirlAGiftContext db = new GetYoGirlAGiftContext();
 
         // GET: api/Users
-        public IQueryable<Users> GetUsers()
+        public IQueryable<User> GetUsers()
         {
             return db.Users;
         }
 
         // GET: api/Users/5
-        [ResponseType(typeof(Users))]
+        [ResponseType(typeof(User))]
         public IHttpActionResult GetUsers(int id)
         {
-            Users users = db.Users.Find(id);
+            User users = db.Users.Find(id);
             if (users == null)
             {
                 return NotFound();
@@ -38,7 +37,7 @@ namespace GetYoGirlAGift.Controllers
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUsers(int id, Users users)
+        public IHttpActionResult PutUsers(int id, User users)
         {
             if (!ModelState.IsValid)
             {
@@ -72,8 +71,8 @@ namespace GetYoGirlAGift.Controllers
         }
 
         // POST: api/Users
-        [ResponseType(typeof(Users))]
-        public IHttpActionResult PostUsers(Users users)
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PostUsers(User users)
         {
             if (!ModelState.IsValid)
             {
@@ -87,10 +86,10 @@ namespace GetYoGirlAGift.Controllers
         }
 
         // DELETE: api/Users/5
-        [ResponseType(typeof(Users))]
+        [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUsers(int id)
         {
-            Users users = db.Users.Find(id);
+            User users = db.Users.Find(id);
             if (users == null)
             {
                 return NotFound();

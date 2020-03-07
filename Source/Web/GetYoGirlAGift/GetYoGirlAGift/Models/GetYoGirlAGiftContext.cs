@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace GetYoGirlAGift.Data
+namespace GetYoGirlAGift.Models
 {
     public class GetYoGirlAGiftContext : DbContext
     {
@@ -19,14 +19,14 @@ namespace GetYoGirlAGift.Data
         {
         }
 
-        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.Users> Users { get; set; }
+        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.User> Users { get; set; }
 
-        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.Girls> Girls { get; set; }
+        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.Girl> Girls { get; set; }
 
-        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.Images> Images { get; set; }
+        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.GirlImage> Images { get; set; }
 
-        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.ImportantDates> ImportantDates { get; set; }
+        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.ImportantDate> ImportantDates { get; set; }
 
-        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.Interests> Interests { get; set; }
+        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.Interest> Interests { get; set; }
     }
 }

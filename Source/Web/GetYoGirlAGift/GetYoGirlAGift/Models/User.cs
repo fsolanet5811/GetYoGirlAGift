@@ -3,18 +3,21 @@ using System.Collections.Generic;
 
 namespace GetYoGirlAGift.Models
 {
-    public partial class Users
+    public partial class User
     {
-        public Users()
+        public User()
         {
-            Girls = new HashSet<Girls>();
+            Girls = new HashSet<Girl>();
         }
 
         public int Id { get; set; }
+
         public string Username { get; set; }
+
         public string Password { get; set; }
+
         public string Email { get; set; }
 
-        public virtual ICollection<Girls> Girls { get; set; }
+        public virtual ICollection<Girl> Girls { get; set; }
     }
 }

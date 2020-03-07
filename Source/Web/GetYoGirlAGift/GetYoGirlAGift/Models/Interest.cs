@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace GetYoGirlAGift.Models
 {
-    public partial class Images
+    public partial class Interest
     {
         public int Id { get; set; }
-        public int GirlId { get; set; }
-        public byte[] Image { get; set; }
 
-        public virtual Girls Girl { get; set; }
+        public int GirlId { get; set; }
+
+        public string Value { get; set; }
     }
 }

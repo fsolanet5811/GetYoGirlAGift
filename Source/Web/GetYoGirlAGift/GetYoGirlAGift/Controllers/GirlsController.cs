@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using GetYoGirlAGift.Data;
 using GetYoGirlAGift.Models;
 
 namespace GetYoGirlAGift.Controllers
@@ -18,16 +17,16 @@ namespace GetYoGirlAGift.Controllers
         private GetYoGirlAGiftContext db = new GetYoGirlAGiftContext();
 
         // GET: api/Girls
-        public IQueryable<Girls> GetGirls()
+        public IQueryable<Girl> GetGirls()
         {
             return db.Girls;
         }
 
         // GET: api/Girls/5
-        [ResponseType(typeof(Girls))]
+        [ResponseType(typeof(Girl))]
         public IHttpActionResult GetGirls(int id)
         {
-            Girls girls = db.Girls.Find(id);
+            Girl girls = db.Girls.Find(id);
             if (girls == null)
             {
                 return NotFound();
@@ -38,7 +37,7 @@ namespace GetYoGirlAGift.Controllers
 
         // PUT: api/Girls/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutGirls(int id, Girls girls)
+        public IHttpActionResult PutGirls(int id, Girl girls)
         {
             if (!ModelState.IsValid)
             {
@@ -72,8 +71,8 @@ namespace GetYoGirlAGift.Controllers
         }
 
         // POST: api/Girls
-        [ResponseType(typeof(Girls))]
-        public IHttpActionResult PostGirls(Girls girls)
+        [ResponseType(typeof(Girl))]
+        public IHttpActionResult PostGirls(Girl girls)
         {
             if (!ModelState.IsValid)
             {
@@ -87,10 +86,10 @@ namespace GetYoGirlAGift.Controllers
         }
 
         // DELETE: api/Girls/5
-        [ResponseType(typeof(Girls))]
+        [ResponseType(typeof(Girl))]
         public IHttpActionResult DeleteGirls(int id)
         {
-            Girls girls = db.Girls.Find(id);
+            Girl girls = db.Girls.Find(id);
             if (girls == null)
             {
                 return NotFound();

@@ -17,7 +17,7 @@ namespace GetYoGirlAGift.Models
             _keyManager = new RainforestKeyManager();
         }
 
-        public SearchRequestResponse Search(string searchText)
+        public List<SearchResult> Search(string searchText)
         {
             string key = _keyManager.GetKey();
             AmazonClient client = new AmazonClient(key);
@@ -27,7 +27,7 @@ namespace GetYoGirlAGift.Models
             if (response.CreditsUsed > 0)
                 _keyManager.ConsumeKey(key);
 
-            return response;
+            return response.SearchResults;
         }
     }
 }
