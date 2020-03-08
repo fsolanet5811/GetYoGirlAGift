@@ -10,5 +10,13 @@ namespace GetYoGirlAGift.Models
         public int GirlId { get; set; }
 
         public string Value { get; set; }
+
+        public bool IsNew
+        {
+            get
+            {
+                return Id == 0;
+            }
+        }
     }
 }

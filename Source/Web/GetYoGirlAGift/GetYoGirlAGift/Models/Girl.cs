@@ -64,6 +64,18 @@ namespace GetYoGirlAGift.Models
             return new Bitmap(new MemoryStream(Images[index].Image));
         }
 
+        public void PutIdInProperties()
+        {
+            foreach (GirlImage image in Images)
+                image.GirlId = Id;
+
+            foreach (ImportantDate date in ImportantDates)
+                date.GirlId = Id;
+
+            foreach (Interest interest in Interests)
+                interest.GirlId = Id;
+        }
+
         private Interest GetRandomInterest()
         {
             Random r = new Random();

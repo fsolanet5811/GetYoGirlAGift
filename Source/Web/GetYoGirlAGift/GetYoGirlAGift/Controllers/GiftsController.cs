@@ -55,7 +55,7 @@ namespace GetYoGirlAGift.Controllers
             {
                 Girl girl = LoadGirlFromId(girlId);
                 if (girl is null)
-                    return BadRequest($"A girl with the Id {girlId} does not exist.");
+                    return NotFound();
 
                 return Ok(await GiftComparer.CompareImages(girl.GetRandomImage(), request.ImageBytes));
             }
@@ -69,9 +69,7 @@ namespace GetYoGirlAGift.Controllers
         {
             using (GetYoGirlAGiftContext context = new GetYoGirlAGiftContext())
             {
-                return (from g in context.Girls
-                        where g.Id == id
-                        select g).FirstOrDefault();
+                return context.Girls.Find(id);
             }
         }
     }

@@ -12,5 +12,13 @@ namespace GetYoGirlAGift.Models
         public DateTime Date { get; set; }
 
         public string Occasion { get; set; }
+
+        public bool IsNew
+        {
+            get
+            {
+                return Id == 0;
+            }
+        }
     }
 }

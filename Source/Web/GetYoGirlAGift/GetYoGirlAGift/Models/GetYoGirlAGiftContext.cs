@@ -19,14 +19,16 @@ namespace GetYoGirlAGift.Models
         {
         }
 
-        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
-        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.Girl> Girls { get; set; }
+        public DbSet<Girl> Girls { get; set; }
 
-        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.GirlImage> Images { get; set; }
+        public DbSet<GirlImage> Images { get; set; }
 
-        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.ImportantDate> ImportantDates { get; set; }
+        public DbSet<ImportantDate> ImportantDates { get; set; }
 
-        public System.Data.Entity.DbSet<GetYoGirlAGift.Models.Interest> Interests { get; set; }
+        public DbSet<Interest> Interests { get; set; }
+
+        public DbSet<EmailVerificationToken> EmailVerificationTokens { get; set; }
     }
 }
