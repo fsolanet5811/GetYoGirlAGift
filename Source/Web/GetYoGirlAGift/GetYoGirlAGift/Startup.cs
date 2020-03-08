@@ -7,8 +7,8 @@ using Microsoft.Owin.Cors;
 using GetYoGirlAGift.Authentication;
 using System.Web.Http;
 
-[assembly: OwinStartup(typeof(GetYoGirlAGift.App_Start.Startup))]
-namespace GetYoGirlAGift.App_Start
+[assembly: OwinStartup(typeof(GetYoGirlAGift.Startup))]
+namespace GetYoGirlAGift
 {
     public class Startup
     {
