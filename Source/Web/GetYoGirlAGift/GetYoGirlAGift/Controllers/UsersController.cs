@@ -36,7 +36,7 @@ namespace GetYoGirlAGift.Controllers
         }
 
         // GET: api/Users/5
-        //[Authorize]
+        [Authorize]
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
