@@ -7,7 +7,7 @@ using Microsoft.Owin.Cors;
 using GetYoGirlAGift.Authentication;
 using System.Web.Http;
 
-[assembly: OwinStartup(typeof(GetYoGirlAGift.App_Start.Startup))]
+//[assembly: OwinStartup(typeof(GetYoGirlAGift.App_Start.Startup))]
 namespace GetYoGirlAGift.App_Start
 {
     public class Startup
@@ -17,16 +17,16 @@ namespace GetYoGirlAGift.App_Start
             // Enable CORS.
             app.UseCors(CorsOptions.AllowAll);
 
-            OAuthAuthorizationServerOptions options = new OAuthAuthorizationServerOptions
-            {
-                AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new AuthorizationServerProvider()
-            };
+            //OAuthAuthorizationServerOptions options = new OAuthAuthorizationServerOptions
+            //{
+            //    AllowInsecureHttp = true,
+            //    TokenEndpointPath = new PathString("/token"),
+            //    AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+            //    Provider = new AuthorizationServerProvider()
+            //};
 
-            app.UseOAuthAuthorizationServer(options);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+            //app.UseOAuthAuthorizationServer(options);
+            //app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
