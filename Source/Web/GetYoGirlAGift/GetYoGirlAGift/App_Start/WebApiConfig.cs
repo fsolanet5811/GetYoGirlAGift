@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
 
 namespace GetYoGirlAGift
@@ -10,6 +11,7 @@ namespace GetYoGirlAGift
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             // Web API routes
             config.MapHttpAttributeRoutes();

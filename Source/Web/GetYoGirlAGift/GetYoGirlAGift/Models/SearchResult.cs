@@ -24,6 +24,7 @@ namespace GetYoGirlAGift.Models
         [JsonProperty("prices")]
         public List<Price> Prices { get; set; }
 
+        [JsonProperty("rating")]
         public Rating Rating { get; set; }
 
         public async Task<byte[]> DownloadImageBytesAsync()

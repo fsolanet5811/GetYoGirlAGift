@@ -21,13 +21,15 @@ namespace GetYoGirlAGift.Controllers
     {
         private static readonly int NUM_GIFTS = 5;
 
+        private GetYoGirlAGiftContext db = new GetYoGirlAGiftContext();
+
         [HttpGet]
         public async Task<IHttpActionResult> RetrieveGifts(int girlId, string occassion)
         {
             try
             {
                 // Pull the girl information from the database.
-                Girl girl = LoadGirlFromId(girlId);
+                Girl girl = db.Girls.Find(girlId);
                 if (girl is null)
                     return BadRequest($"A girl with the Id {girlId} does not exist.");
 
@@ -49,11 +51,11 @@ namespace GetYoGirlAGift.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Evaluate(int girlId, [FromBody] EvaluateGiftRequest request)
+        public async Task<IHttpActionResult> EvaluateGift(int girlId, [FromBody] EvaluateGiftRequest request)
         {
             try
             {
-                Girl girl = LoadGirlFromId(girlId);
+                Girl girl = db.Girls.Find(girlId);
                 if (girl is null)
                     return NotFound();
 
@@ -65,12 +67,13 @@ namespace GetYoGirlAGift.Controllers
             }
         }
 
-        private Girl LoadGirlFromId(int id)
+        protected override void Dispose(bool disposing)
         {
-            using (GetYoGirlAGiftContext context = new GetYoGirlAGiftContext())
+            if (disposing)
             {
-                return context.Girls.Find(id);
+                db.Dispose();
             }
+            base.Dispose(disposing);
         }
     }
 }
