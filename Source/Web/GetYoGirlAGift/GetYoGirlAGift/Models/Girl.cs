@@ -45,13 +45,13 @@ namespace GetYoGirlAGift.Models
 
             if(!HasInterests)
             {
-                queries.Add($"{Enum.GetName(typeof(Relationship), Relationship)} {occassion}");
+                queries.Add($"{Enum.GetName(typeof(Relationship), Relationship)} {occassion} gift");
             }
             else
             {
                 string interest = GetRandomInterest().Value;
-                queries.Add($"{interest} {occassion}");
-                queries.Add(interest);
+                queries.Add($"{interest} {occassion} gift");
+                queries.Add($"{interest} gift");
             }
 
             return queries;

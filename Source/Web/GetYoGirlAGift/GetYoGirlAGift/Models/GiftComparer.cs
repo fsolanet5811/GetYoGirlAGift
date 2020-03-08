@@ -12,15 +12,14 @@ namespace GetYoGirlAGift.Models
     {
         public static async Task<List<Gift>> GetHighestRatedGifts(Bitmap girlImage, List<SearchResult> searchResults, int numGifts)
         {
+            // Calculate the rgb for the girl image first, so we don't have to do it 120 times!
+            RGB girlRgb = await CalculateImageAverageRGB(girlImage);
+
             Task<Gift>[] giftTasks = (from sr in searchResults
-                                      select EvaluateSearchResult(girlImage, sr)).ToArray();
+                                      select EvaluateSearchResult(girlRgb, sr)).ToArray();
 
             await Task.Run(() =>
             {
-                // Start all of the tasks.
-                foreach (Task<Gift> task in giftTasks)
-                    task.Start();
-
                 Task.WaitAll(giftTasks);
             });
 
@@ -44,43 +43,9 @@ namespace GetYoGirlAGift.Models
 
         public static async Task<Rating> CompareImages(Bitmap image1, Bitmap image2)
         {
-            Task<Rating> task = new Task<Rating>(() =>
-            {
-                // Average out the rgb's for each image.
-                double r1 = 0, r2 = 0, g1 = 0, g2 = 0, b1 = 0, b2 = 0;
-                int pixelCount = 0;
-
-                for (int i = 0; i < image1.Height; i++)
-                    for (int j = 0; j < image1.Width; j++)
-                    {
-                        Color pixel = image1.GetPixel(i, j);
-                        r1 = (pixelCount * r1 + pixel.R) / (pixelCount + 1);
-                        g1 = (pixelCount * g1 + pixel.G) / (pixelCount + 1);
-                        b1 = (pixelCount * b1 + pixel.B) / (pixelCount + 1);
-                        pixelCount++;
-                    }
-
-                for (int i = 0; i < image2.Height; i++)
-                    for (int j = 0; j < image2.Width; j++)
-                    {
-                        Color pixel = image2.GetPixel(i, j);
-                        r2 = (pixelCount * r2 + pixel.R) / (pixelCount + 1);
-                        g2 = (pixelCount * g2 + pixel.G) / (pixelCount + 1);
-                        b2 = (pixelCount * b2 + pixel.B) / (pixelCount + 1);
-                        pixelCount++;
-                    }
-
-                // Create a rating based on the differences of the rgb's.
-                return new Rating()
-                {
-                    Likability = (1 - Math.Abs(r1 - r2) / 255) * 10,
-                    ReturnChance = 1 - Math.Abs(g1 - g2) / 255,
-                    FriendsJealousy = (1 - Math.Abs(b1 - b2) / 255) * 10
-                };
-            });
-
-            task.Start();
-            return await task;
+            RGB rgb1 = await CalculateImageAverageRGB(image1);
+            RGB rgb2 = await CalculateImageAverageRGB(image2);
+            return FromRGBs(rgb1, rgb2);
         }
 
         public static async Task<Rating> CompareImages(Bitmap image1, byte[] image2Bytes)
@@ -91,15 +56,82 @@ namespace GetYoGirlAGift.Models
             }
         }
 
-        private static async Task<Gift> EvaluateSearchResult(Bitmap girlImage, SearchResult searchResult)
+        private static async Task<Rating> CompareImages(RGB rgb1, byte[] image2Bytes)
+        {
+            using (MemoryStream image2Stream = new MemoryStream(image2Bytes))
+            {
+                return await CompareImages(rgb1, new Bitmap(image2Stream));
+            }
+        }
+
+        private static async Task<Rating> CompareImages(RGB image1AverageRgb, Bitmap image2)
+        {
+            RGB rgb2 = await CalculateImageAverageRGB(image2);
+            return FromRGBs(image1AverageRgb, rgb2);
+        }
+    
+        private static Rating FromRGBs(RGB rgb1, RGB rgb2)
+        {
+            // Create a rating based on the differences of the rgb's.
+            return new Rating()
+            {
+                Likability = (1 - Math.Abs(rgb1.R - rgb2.R) / 255) * 10,
+                ReturnChance = Math.Abs(rgb1.G - rgb2.G) / 255,
+                FriendsJealousy = (1 - Math.Abs(rgb1.B - rgb2.B) / 255) * 10
+            };
+        }
+
+        private static async Task<Gift> EvaluateSearchResult(RGB girlRgb, SearchResult searchResult)
         {
             // Download the image from the search result.
             byte[] searchImage = await searchResult.DownloadImageBytesAsync();
 
             // Compare the search result image to the image of the girl.
-            Rating rating = await CompareImages(girlImage, searchImage);
+            Rating rating = await CompareImages(girlRgb, searchImage);
 
             return new Gift(searchResult, rating, searchImage);
+        }
+
+        private static async Task<RGB> CalculateImageAverageRGB(Bitmap image)
+        {
+            return await Task.Run(() =>
+            {
+                double r = 0, g = 0, b = 0;
+                int pixelCount = 0;
+
+                // We are only going to calculate the rgb for the middle of the image.
+                // If you divide the image into 9 pieces like a tic-tac-toe board, we would be considered with the square in the dead center
+                int startY = image.Height / 3;
+                int endY = image.Height * 2 / 3;
+                int startX = image.Width / 3;
+                int endX = image.Width * 2 / 3;
+                for (int y = startY; y < endY; y++)
+                    for (int x = startX; x < endX; x++)
+                    {
+                        Color pixel = image.GetPixel(x, y);
+                        r = (pixelCount * r + pixel.R) / (pixelCount + 1);
+                        g = (pixelCount * g + pixel.G) / (pixelCount + 1);
+                        b = (pixelCount * b + pixel.B) / (pixelCount + 1);
+                        pixelCount++;
+                    }
+              
+                return new RGB() { R = r, G = g, B = b }; ;
+            });
+            
+        }
+
+        private class RGB
+        {
+            public double R { get; set; }
+
+            public double G { get; set; }
+
+            public double B { get; set; }
+
+            public override string ToString()
+            {
+                return $"R = {R}\nG = {G}\n B = {B}";
+            }
         }
     }
 }

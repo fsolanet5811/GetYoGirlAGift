@@ -63,7 +63,7 @@ namespace GetYoGirlAGift.Models
             get
             {
                 // We will use the exact values for our rating for a slightly more accurate overall.
-                return Math.Round(CalculateOverall(_likability, _returnChance, _friendsJealousy));
+                return Math.Round(CalculateOverall(_likability, _returnChance, _friendsJealousy), 1);
             }
         }
 

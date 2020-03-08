@@ -52,7 +52,7 @@ namespace GetYoGirlAGift.Models
         private class _SearchRequestResponseWrapper
         {
             [JsonProperty("search_results")]
-            public List<SearchResult> SearchResults { get; set; }
+            public List<_SearchResultWrapper> SearchResults { get; set; }
 
             [JsonProperty("request_info")]
             public _RequestInfoWrapper RequestInfo { get; set; }
@@ -61,7 +61,7 @@ namespace GetYoGirlAGift.Models
             {
                 return new SearchRequestResponse()
                 {
-                    SearchResults = SearchResults,
+                    SearchResults = _SearchResultWrapper.ConvertList(SearchResults),
                     CreditsUsed = RequestInfo.CreditsUsed,
                     CreditsRemaining = RequestInfo.CreditsRemaining
                 };
@@ -75,6 +75,38 @@ namespace GetYoGirlAGift.Models
 
             [JsonProperty("credits_remaining")]
             public int CreditsRemaining { get; set; }
+        }
+
+        private class _SearchResultWrapper
+        {
+            [JsonProperty("title")]
+            public string Title { get; set; }
+
+            [JsonProperty("link")]
+            public string AmazonLink { get; set; }
+
+            [JsonProperty("image")]
+            public string ImageLink { get; set; }
+
+            [JsonProperty("prices")]
+            public List<Price> Prices { get; set; }
+
+            public static List<SearchResult> ConvertList(List<_SearchResultWrapper> results)
+            {
+                return (from sr in results
+                        select sr.ToSearchResult()).ToList();
+            }
+
+            public SearchResult ToSearchResult()
+            {
+                return new SearchResult()
+                {
+                    Title = Title,
+                    AmazonLink = AmazonLink,
+                    ImageLink = ImageLink,
+                    Prices = Prices
+                };
+            }
         }
 
         #endregion
