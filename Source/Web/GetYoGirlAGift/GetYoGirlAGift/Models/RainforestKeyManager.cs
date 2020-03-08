@@ -47,14 +47,14 @@ namespace GetYoGirlAGift.Models
         /// <returns>
         /// True if the key has no more credits, false otherwise.
         /// </returns>
-        public bool ConsumeKey(string key)
+        public bool ConsumeKey(string key, int remainingCredits)
         {
             RainforestKey rKey = _keys.FirstOrDefault(k => k.Key == key);
             if (rKey is null)
                 throw new Exception($"Could not find rainforest key {key}.");
 
             // Consume a credit.
-            rKey.Credits--;
+            rKey.Credits = remainingCredits;
 
             // If this key has no more credits, we can just remove it.
             bool emptyKey = rKey.Credits == 0;
@@ -69,7 +69,7 @@ namespace GetYoGirlAGift.Models
 
         private void SaveKeys()
         {
-            using (StreamWriter sw = new StreamWriter(Path.Combine(Directory.GetCurrentDirectory(), KEYS_FILE_NAME)))
+            using (StreamWriter sw = new StreamWriter(HttpContext.Current.Server.MapPath($"~/bin/{KEYS_FILE_NAME}")))
             using (JsonWriter jw = new JsonTextWriter(sw))
             {
                 JsonSerializer serializer = new JsonSerializer();
@@ -79,7 +79,7 @@ namespace GetYoGirlAGift.Models
 
         private static List<RainforestKey> LoadKeys()
         {
-            using (StreamReader reader = File.OpenText(Path.Combine(Directory.GetCurrentDirectory(), KEYS_FILE_NAME)))
+            using (StreamReader reader = File.OpenText(HttpContext.Current.Server.MapPath($"~/bin/{KEYS_FILE_NAME}")))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 return (List<RainforestKey>)serializer.Deserialize(reader, typeof(List<RainforestKey>));

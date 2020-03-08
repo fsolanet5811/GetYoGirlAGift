@@ -25,7 +25,7 @@ namespace GetYoGirlAGift.Models
 
             // Only one key can be consumed per request.
             if (response.CreditsUsed > 0)
-                _keyManager.ConsumeKey(key);
+                _keyManager.ConsumeKey(key, response.CreditsRemaining);
 
             return response.SearchResults;
         }
