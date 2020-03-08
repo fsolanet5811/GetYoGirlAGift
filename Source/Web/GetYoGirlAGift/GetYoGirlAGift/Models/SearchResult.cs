@@ -6,6 +6,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace GetYoGirlAGift.Models
 {
@@ -25,18 +26,17 @@ namespace GetYoGirlAGift.Models
 
         public Rating Rating { get; set; }
 
-        public byte[] DownloadImageBytes()
+        public async Task<byte[]> DownloadImageBytesAsync()
         {
             using (WebClient client = new WebClient())
             {
-                return client.DownloadData(ImageLink);
-               
+                return await Task.Run(() =>client.DownloadData(ImageLink));
             }
         }
 
-        public Bitmap DownloadImage()
+        public async Task<Bitmap> DownloadImageAsync()
         {
-            byte[] imageBytes = DownloadImageBytes();
+            byte[] imageBytes = await DownloadImageBytesAsync();
             MemoryStream stream = new MemoryStream(imageBytes);
             return new Bitmap(stream);
         }
