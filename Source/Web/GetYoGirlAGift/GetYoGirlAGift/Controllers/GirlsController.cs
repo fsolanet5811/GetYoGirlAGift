@@ -13,6 +13,7 @@ using GetYoGirlAGift.Models;
 
 namespace GetYoGirlAGift.Controllers
 {
+    [Authorize]
     public class GirlsController : ApiController
     {
         private GetYoGirlAGiftContext db = new GetYoGirlAGiftContext();
