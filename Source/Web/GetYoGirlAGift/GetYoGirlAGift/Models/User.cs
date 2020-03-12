@@ -57,7 +57,7 @@ namespace GetYoGirlAGift.Models
                 Body = GetEmailBody(token.Token),
                 Subject = "Verify Your Email Address"
             };
-            mail.To.Add("miamiheat13406@gmail.com");
+            mail.To.Add(Email);
 
             client.Send(mail);
             return token;

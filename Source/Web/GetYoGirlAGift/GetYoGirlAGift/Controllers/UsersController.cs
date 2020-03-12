@@ -17,11 +17,21 @@ namespace GetYoGirlAGift.Controllers
 {
     public class PasswordChangeRequest
     {
-        [JsonProperty("oldPassword")]
         public string OldPassword { get; set; }
 
-        [JsonProperty("newPassword")]
         public string NewPassword { get; set; }
+    }
+
+    public class LoginRequest
+    {
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+    }
+
+    public class SignUpRequest : LoginRequest
+    {
+        public string Email { get; set; }
     }
 
     public class UsersController : ApiController
@@ -143,7 +153,7 @@ namespace GetYoGirlAGift.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPut]
         [Authorize]
         [Route("api/users/manage")]
         public IHttpActionResult SendVerificationEmail(int userId)
@@ -204,6 +214,71 @@ namespace GetYoGirlAGift.Controllers
             catch(Exception ex)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+        
+        [HttpPost]
+        [Authorize]
+        [Route("api/users/login")]
+        public IHttpActionResult Login([FromBody] LoginRequest request)
+        {
+            try
+            {
+                User user = (from u in db.Users
+                            where u.Username == request.Username && u.Password == request.Password
+                            select u).FirstOrDefault();
+
+                return Ok(new { Success = user != null, User = user });
+            }
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("api/users/signup")]
+        public IHttpActionResult SignUp([FromBody] SignUpRequest request)
+        {
+            try
+            {
+                User user = (from u in db.Users
+                             where u.Username == request.Username
+                             select u).FirstOrDefault();
+
+                if (user != null)
+                    return Ok(new { Success = false, Message = "That username is already taken." });
+
+                user = (from u in db.Users
+                        where u.Email == request.Email
+                        select u).FirstOrDefault();
+
+                if (user != null)
+                    return Ok(new { Success = false, Message = "An account with that email already exists." });
+
+                user = new User()
+                {
+                    Username = request.Username,
+                    Password = request.Password,
+                    Email = request.Email,
+                    IsEmailVerified = false
+                };
+
+                db.Users.Add(user);
+
+                db.SaveChanges();
+
+                // Send this user a verification email.
+                EmailVerificationToken token = user.SendVerificationEmail();
+                db.EmailVerificationTokens.Add(token);
+                db.SaveChanges();
+
+                return Ok(new { Success = true, User = user });
+            }
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
             }
         }
 
