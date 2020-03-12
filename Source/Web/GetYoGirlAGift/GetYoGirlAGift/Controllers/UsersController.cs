@@ -40,9 +40,12 @@ namespace GetYoGirlAGift.Controllers
 
         // GET: api/Users
         [Authorize]
-        public IQueryable<User> GetUser()
+        public IHttpActionResult GetUser()
         {
-            return db.Users;
+            List<User> users = (from user in db.Users
+                                select user).ToList();
+
+            return Ok(users);
         }
 
         // GET: api/Users/5

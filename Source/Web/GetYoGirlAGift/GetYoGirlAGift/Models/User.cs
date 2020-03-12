@@ -26,7 +26,7 @@ namespace GetYoGirlAGift.Models
 
         public bool IsEmailVerified { get; set; }
 
-        public virtual ICollection<Girl> Girls { get; set; }
+        public virtual List<Girl> Girls { get; set; }
 
         private EmailVerificationToken GenerateEmailVerificationToken()
         {
