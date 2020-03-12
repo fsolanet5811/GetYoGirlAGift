@@ -1,6 +1,47 @@
 ﻿<!DOCTYPE html>
 <html>
-<body>
-    <a href="@VerifyEmailApiCall">Click here to make the request</a>
+<head>
+    <style>
+        .button {
+            background-color: blue;
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            opacity: 0.6;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .emailBody{
+            border-style: solid;
+            text-align: center;
+            background-color:aliceblue;
+
+        }
+        .body{
+            background-color:lightgray
+        }
+
+            .button:hover {
+                opacity: 1
+            }
+    </style>
+</head>
+<body class="body">
+    <div class=" emailBody">
+        <h1>Almost done new user!</h1>
+        <h2>Please press the button below to complete email verification.</h2>
+        <a href=" @VerifyEmailApiCall" class="button">Verify Email</a>
+        <h2>Once verification is complete you may begin using all the aspects of GitYoGirlAGift</h2>
+        <h3>Button not working? Please follow the link here:</h3>
+        <a href="@VerifyEmailApiCall"></a>
+        <h3>You are recieving this email becuase this email address was used to create a new user on GitYoGirlAGift.</h3>
+        <h4><b>If this was not you; please ignore/disregard this email.</b></h4>
+    </div>
 </body>
 </html>
