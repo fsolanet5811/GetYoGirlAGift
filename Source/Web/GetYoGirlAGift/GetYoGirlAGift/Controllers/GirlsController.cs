@@ -18,9 +18,12 @@ namespace GetYoGirlAGift.Controllers
         private GetYoGirlAGiftContext db = new GetYoGirlAGiftContext();
 
         // GET: api/Girls
-        public IQueryable<Girl> GetGirls()
+        public IHttpActionResult GetGirls()
         {
-            return db.Girls;
+            List<Girl> girls = (from girl in db.Girls
+                                select girl).ToList();
+
+            return Ok(girls);
         }
 
         // GET: api/Girls/5

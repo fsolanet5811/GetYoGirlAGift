@@ -12,7 +12,6 @@ namespace GetYoGirlAGift.Controllers
 {
     public class EvaluateGiftRequest
     {
-        [JsonProperty("imageBytes")]
         public byte[] ImageBytes { get; set; }
     }
 
