@@ -19,6 +19,7 @@ namespace GetYoGirlAGift.Controllers
     public class GiftsController : ApiController
     {
         private static readonly int NUM_GIFTS = 5;
+        private static readonly int MAX_QUERY_RESULTS = 30;
 
         private GetYoGirlAGiftContext db = new GetYoGirlAGiftContext();
 
@@ -39,7 +40,15 @@ namespace GetYoGirlAGift.Controllers
                 List<SearchResult> results = new List<SearchResult>();
 
                 foreach (string query in queries)
-                    results.AddRange(consumer.Search(query));
+                {
+                    // No more than 30 results from each query.
+                    // Also don't want to add duplicate entries from amazon.
+                    List<SearchResult> queryResults = consumer.Search(query);
+                    IEnumerable<SearchResult> uniqueQueryResults = queryResults.Where(qr => !results.Exists(r => r.AmazonId == qr.AmazonId))
+                        .Take(MAX_QUERY_RESULTS);
+
+                    results.AddRange(uniqueQueryResults);
+                }
 
                 return Ok(await GiftComparer.GetHighestRatedGifts(girl.GetRandomImage(), results, NUM_GIFTS));
             }

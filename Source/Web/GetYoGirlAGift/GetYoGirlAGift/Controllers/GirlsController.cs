@@ -134,6 +134,11 @@ namespace GetYoGirlAGift.Controllers
 
             foreach (ImportantDate date in girl.ImportantDates)
                 db.Entry(date).State = date.IsNew ? EntityState.Added : EntityState.Modified;
+
+            // Remove the ones that no longer exist.
+            db.Images.RemoveRange(db.Images.Where(i => i.GirlId == girl.Id && !girl.Images.Select(img => img.Id).Contains(i.Id)));
+            db.ImportantDates.RemoveRange(db.ImportantDates.Where(d => d.GirlId == girl.Id && !girl.ImportantDates.Select(dt => dt.Id).Contains(d.Id)));
+            db.Interests.RemoveRange(db.Interests.Where(i => i.GirlId == girl.Id && !girl.Interests.Select(inte => inte.Id).Contains(i.Id)));
         }
 
         private bool GirlsExists(int id)
