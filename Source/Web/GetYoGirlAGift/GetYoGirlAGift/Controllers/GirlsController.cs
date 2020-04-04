@@ -135,10 +135,38 @@ namespace GetYoGirlAGift.Controllers
             foreach (ImportantDate date in girl.ImportantDates)
                 db.Entry(date).State = date.IsNew ? EntityState.Added : EntityState.Modified;
 
-            // Remove the ones that no longer exist.
-            db.Images.RemoveRange(db.Images.Where(i => i.GirlId == girl.Id && !girl.Images.Select(img => img.Id).Contains(i.Id)));
-            db.ImportantDates.RemoveRange(db.ImportantDates.Where(d => d.GirlId == girl.Id && !girl.ImportantDates.Select(dt => dt.Id).Contains(d.Id)));
-            db.Interests.RemoveRange(db.Interests.Where(i => i.GirlId == girl.Id && !girl.Interests.Select(inte => inte.Id).Contains(i.Id)));
+            // Remove the images that no longer exist.
+            List<int> imageIds = girl.Images.Select(im => im.Id).ToList();
+
+            IEnumerable<GirlImage> images = from img in db.Images
+                                            where img.GirlId == girl.Id
+                                            select img;
+
+            foreach (GirlImage image in images)
+                if(!imageIds.Contains(image.Id))
+                    db.Entry(image).State = EntityState.Deleted;
+
+            // Remove the dates that no longer exist.
+            List<int> dateIds = girl.ImportantDates.Select(d => d.Id).ToList();
+
+            IEnumerable<ImportantDate> dates = from date in db.ImportantDates
+                                               where date.GirlId == girl.Id
+                                               select date;
+          
+            foreach(ImportantDate date in dates)
+                if(!dateIds.Contains(date.Id))
+                    db.Entry(date).State = EntityState.Deleted;
+
+            // Remove the interests that no longer exist.
+            List<int> interestIds = girl.Interests.Select(i => i.Id).ToList();
+
+            IEnumerable<Interest> interests = from interest in db.Interests
+                                              where interest.GirlId == girl.Id
+                                              select interest;
+
+            foreach(Interest interest in interests)
+                if(!interestIds.Contains(interest.Id))
+                    db.Entry(interest).State = EntityState.Deleted;
         }
 
         private bool GirlsExists(int id)

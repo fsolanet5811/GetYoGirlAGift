@@ -79,6 +79,9 @@ namespace GetYoGirlAGift.Models
 
         private class _SearchResultWrapper
         {
+            [JsonProperty("asin")]
+            public string AmazonId { get; set; }
+
             [JsonProperty("title")]
             public string Title { get; set; }
 
@@ -101,6 +104,7 @@ namespace GetYoGirlAGift.Models
             {
                 return new SearchResult()
                 {
+                    AmazonId = AmazonId,
                     Title = Title,
                     AmazonLink = AmazonLink,
                     ImageLink = ImageLink,
