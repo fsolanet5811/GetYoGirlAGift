@@ -115,6 +115,19 @@ namespace GetYoGirlAGift.Controllers
             return Ok(girls);
         }
 
+        //Added function to get all girls for a specific user
+        [HttpGet]
+        [Route("api/Girls/forUser/{userId}")]
+        public IHttpActionResult getGirlByUser(int userId) {
+            
+            List<Girl> girls = (from girl in db.Girls
+                                where girl.UserId == userId
+                                select girl).ToList();
+
+            return Ok(girls);
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
