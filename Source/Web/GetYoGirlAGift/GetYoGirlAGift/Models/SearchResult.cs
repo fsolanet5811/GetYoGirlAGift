@@ -12,6 +12,9 @@ namespace GetYoGirlAGift.Models
 {
     public class SearchResult
     {
+        [JsonProperty("asin")]
+        public string AmazonId { get; set; }
+
         [JsonProperty("title")]
         public string Title { get; set; }
 
