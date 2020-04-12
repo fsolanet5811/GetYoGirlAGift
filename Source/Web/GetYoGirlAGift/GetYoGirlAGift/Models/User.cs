@@ -9,7 +9,7 @@ namespace GetYoGirlAGift.Models
 {
     public partial class User
     {
-        private static readonly string EMAIL_SERVICE_ADDRESS = "getyogirlagift.emailservice@gmail.com";
+        private static readonly string EMAIL_SERVICE_ADDRESS = "getyogirlagift.emailservice@gmail.com";//"getyogirlagift.emailservice@gmail.com";
 
         public User()
         {
@@ -49,6 +49,7 @@ namespace GetYoGirlAGift.Models
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential(EMAIL_SERVICE_ADDRESS, "yeet1234");
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.EnableSsl = true;
 
             MailMessage mail = new MailMessage
             {
