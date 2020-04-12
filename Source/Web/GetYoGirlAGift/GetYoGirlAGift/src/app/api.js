@@ -22,6 +22,14 @@ export async function getToken(tokenCredentials) {
   }
   formBody = formBody.join("&")
 
+  /* Possible solution if formBody doesnt work, uncomment this, comment the above lines from var fromBody to formBody.join.
+   * Replace formBody bellow with params
+  var params = new URLSearchParams();
+  params.set('username', 'ApiAccess');
+  params.append('password', 'ApiAccessPassword');
+  params.append('grant_type', 'password');
+  */
+
   return await fetch(baseAddress + '/api/token', {
     body: formBody,
     method: 'POST',
