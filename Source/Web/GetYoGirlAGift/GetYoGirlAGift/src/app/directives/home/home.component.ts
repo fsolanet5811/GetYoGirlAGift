@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadAllUsers();
-  }
+   // this.getGirls();
+  }/*
   addUser(id: number) {
-    this.userService.add(id).pipe(first()).subscribe(() => {
+    //this.userService.register(id).pipe(first()).subscribe(() => {
       this.loadAllUsers()
     });
   }
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   private loadAllUsers() {
     this.userService.getAll().pipe(first()).subscribe(users => {
       this.users = users;
-    });
-  }
+    });*/
 }
+
 
