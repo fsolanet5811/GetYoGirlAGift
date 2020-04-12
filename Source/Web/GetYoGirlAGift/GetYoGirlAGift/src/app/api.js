@@ -3,6 +3,14 @@ var baseAddress = 'http://getyogirlagift.azurewebsites.net';
 
 
 //Get token function
+/*
+ *  Attributes for token credentials
+ *  Use these exact attributes and values for all calls to getToken:
+ *  username - ApiAccess
+ *  password - ApiAccessPassword
+ *  grant_type - password
+ *  
+ * */
 
 export async function getToken(tokenCredentials) {
 
