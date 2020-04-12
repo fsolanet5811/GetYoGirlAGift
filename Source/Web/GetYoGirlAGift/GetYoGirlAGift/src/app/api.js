@@ -1,13 +1,63 @@
-var baseAddress = 'http://getyogirlagift.azurewebsite.net';
+var baseAddress = 'http://getyogirlagift.azurewebsites.net';
 //var baseAddress = 'http://localhost:3000'
 
+
+//Get token function
+/*
+ *  Attributes for token credentials
+ *  Use these exact attributes and values for all calls to getToken:
+ *  username - ApiAccess
+ *  password - ApiAccessPassword
+ *  grant_type - password
+ *  
+ * */
+
+export async function getToken(tokenCredentials) {
+
+  var formBody = [];
+  for (var property in tokenCredentials) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(tokenCredentials[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&")
+
+  return await fetch(baseAddress + '/api/token', {
+    body: formBody,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'token': token
+    }
+  })
+    .then(response => {
+      return response.json()
+        .then(parsed => {
+          console.log(parsed);
+          return parsed;
+        });
+    });
+}
+
+/*
+ * loginRequest class attributes:
+    username - string
+    password - string
+
+  signupRequest class attributes:
+    username - string
+    password - string
+    email - string
+
+*/
 //login function
-export async function login(user) {
+export async function login(loginRequest, token) {
     return await fetch(baseAddress + '/api/users/login', {
-        body: JSON.stringify(user),
+        body: JSON.stringify(loginRequest),
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'token': token
         }
     })
         .then(response => {
@@ -20,12 +70,13 @@ export async function login(user) {
 }
 
 //Add User function
-export async function addUser(user) {
+export async function addUser(signupRequest, token) {
     return await fetch(baseAddress + '/api/users/signup', {
-        body: JSON.stringify(user),
+        body: JSON.stringify(signupRequest),
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'token': token
         }
     })
         .then(response => {
@@ -38,12 +89,13 @@ export async function addUser(user) {
 }
 
 //Change password function
-export async function changePassword(user) {
+export async function changePassword(user, token) {
     return await fetch(baseAddress + '/api/users/manage', {
         body: JSON.stringify(user),
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'token': token
         }
     })
         .then(response => {
@@ -73,12 +125,16 @@ export async function changePassword(user) {
 }*/
 
 //Get girl by id function
-export async function getGirl(girlId) {
+export async function getGirl(girlId, token) {
 
     let url = new URL('http://getyogirlagift.azurewebsite.net/api/Girls');
     url.searchParams.set('id', girlId);
 
-    return await fetch(url)
+  return await fetch(url, {
+    headers: {
+      'token': token
+    }
+  })
         .then(response => {
             return response.json()
                 .then(parsed => {
@@ -88,9 +144,13 @@ export async function getGirl(girlId) {
 }
 
 //Get all girls for a user
-export async function getGirls(userId) {
+export async function getGirls(userId, token) {
 
-    return await fetch(baseAddress + '/api/Girls/forUser/' + userId)
+  return await fetch(baseAddress + '/api/Girls/forUser/' + userId, {
+    headers: {
+      'token': token
+    }
+  })
         .then(response => {
             return response.json()
                 .then(parsed => {
@@ -100,12 +160,13 @@ export async function getGirls(userId) {
 }
 
 //Add Girl
-export async function AddGirl(girl) {
+export async function AddGirl(girl, token) {
     return await fetch(baseAddress + '/api/Girls', {
         body: JSON.stringify(girl),
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'token': token
         }
     })
         .then(response => {
@@ -118,7 +179,7 @@ export async function AddGirl(girl) {
 }
 
 //Edit Girl
-export async function editGirl(girlId, girl) {
+export async function editGirl(girlId, girl, token) {
 
     let url = new URL('http://getyogirlagift.azurewebsite.net/api/Girls');
     url.searchParams.set('id', girlId);
@@ -127,7 +188,8 @@ export async function editGirl(girlId, girl) {
         body: JSON.stringify(girl),
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'token': token
         }
     })
         .then(response => {
@@ -140,7 +202,7 @@ export async function editGirl(girlId, girl) {
 }
 
 //Delete Girl
-export async function deleteGirl(girlId) {
+export async function deleteGirl(girlId, token) {
 
     let url = new URL('http://getyogirlagift.azurewebsite.net/api/Girls');
     url.searchParams.set('id', girlId);
@@ -148,20 +210,25 @@ export async function deleteGirl(girlId) {
     await fetch(url, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'token': token
         }
     });
 }
 
 //Retrive Gifts for girl fuction
 //Occassion is a string
-export async function getGifts(girlId, occassion) {
+export async function getGifts(girlId, occassion, token) {
 
     let url = new URL('http://getyogirlagift.azurewebsite.net/api/gifts');
     url.searchParams.set('girlid', girlId);
     url.searchParams.append('occassion', occassion);
 
-    return await fetch(url)
+  return await fetch(url, {
+    headers: {
+      'token': token
+    }
+  })
         .then(response => {
             return response.json()
                 .then(parsed => {
@@ -184,7 +251,7 @@ export async function getGifts(girlId, occassion) {
 
 
 
-export async function evaluateGifts(girlId, request) {
+export async function evaluateGifts(girlId, request, token) {
 
     let url = new URL('http://getyogirlagift.azurewebsite.net/api/gifts');
     url.searchParams.set('girlid', girlId);
@@ -193,7 +260,8 @@ export async function evaluateGifts(girlId, request) {
         body: JSON.stringify(request),
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'token': token
         }
     })
         .then(response => {
