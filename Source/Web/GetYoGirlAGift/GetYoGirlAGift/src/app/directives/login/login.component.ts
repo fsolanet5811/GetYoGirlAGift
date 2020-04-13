@@ -6,7 +6,7 @@ import { AlertService } from '../../services/alert.service';
 
 declare const login: any;
 
-@Component({ templateUrl: 'login.component.html' })
+@Component({ templateUrl: './directives/login/login.component.html' })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;

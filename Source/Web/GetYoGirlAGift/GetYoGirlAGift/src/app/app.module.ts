@@ -29,8 +29,7 @@ import { map, catchError, tap } from 'rxjs/operators';
     HomeComponent,
     RegisterComponent,
     AlertComponent,
-    HomepageComponent
-
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +42,9 @@ import { map, catchError, tap } from 'rxjs/operators';
     AuthGuard,
     AlertService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+  ],
 })
 export class AppModule { }
 

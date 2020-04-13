@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  selector: 'Homepage',
+  templateUrl: './directives/homepage/homepage.component.html',
+  styleUrls: ['../styles.css']
 })
 export class HomepageComponent implements OnInit {
 

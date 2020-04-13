@@ -215,7 +215,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-      <Content Include=".\tsconfig.json" />
+    <Content Include=".\tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -223,20 +223,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="src\app\api.js" />
-    <Content Include="src\app\app.component.css" />
     <Content Include="src\app\app.component.html" />
     <Content Include="src\app\directives\about\about.component.css" />
     <Content Include="src\app\directives\about\about.component.html" />
     <Content Include="src\app\directives\alert\alert.component.html" />
-    <Content Include="src\app\directives\homepage\homepage.component.css" />
     <Content Include="src\app\directives\homepage\homepage.component.html" />
-    <Content Include="src\app\directives\home\home.component.css" />
     <Content Include="src\app\directives\home\home.component.html" />
-    <Content Include="src\app\directives\login\login.component.css" />
     <Content Include="src\app\directives\login\login.component.html" />
-    <Content Include="src\app\directives\navigation\navigation.component.css" />
     <Content Include="src\app\directives\navigation\navigation.component.html" />
-    <Content Include="src\app\directives\register\register.component.css" />
     <Content Include="src\app\directives\register\register.component.html" />
     <Content Include="src\assets\images\back_all.gif" />
     <Content Include="src\assets\images\back_bottom3.jpg" />
@@ -367,6 +361,7 @@
     <TypeScriptCompile Include="src\app\models\girl.ts" />
     <TypeScriptCompile Include="src\app\models\user.ts" />
     <TypeScriptCompile Include="src\app\services\alert.service.ts" />
+    <TypeScriptCompile Include="src\app\services\api.service.ts" />
     <TypeScriptCompile Include="src\app\services\girl.service.ts" />
     <TypeScriptCompile Include="src\app\services\user.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
@@ -399,6 +394,8 @@
           <DevelopmentServerPort>61414</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:61414/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:61414/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
