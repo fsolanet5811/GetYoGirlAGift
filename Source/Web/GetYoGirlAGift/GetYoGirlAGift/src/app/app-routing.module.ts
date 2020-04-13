@@ -5,8 +5,9 @@ import { HomeComponent } from './directives//home/home.component';
 import { HomepageComponent } from './directives//homepage/homepage.component';
 import { LoginComponent } from './directives//login/login.component';
 import { RegisterComponent } from './directives//register/register.component';
-
 import { AuthGuard } from './guards/auth.guard';
+
+
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'Homepage', pathMatch: 'full' },
@@ -14,7 +15,9 @@ const appRoutes: Routes = [
   { path: 'Login', component: LoginComponent },
   { path: 'Register', component: RegisterComponent },
   { path: 'Home', component: HomeComponent },// canActivate: [AuthGuard] },
-  { path: 'Homepage', component: HomepageComponent }
+  { path: 'Homepage', component: HomepageComponent },
+  { path: '**', redirectTo: '/' }
 ];
+
 
 export const routing = RouterModule.forRoot(appRoutes);

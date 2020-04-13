@@ -10,7 +10,7 @@ import { LoginComponent } from './directives/login/login.component';
 import { RegisterComponent } from './directives/register/register.component';
 import { AlertComponent } from './directives/alert/alert.component';
 import { HomeComponent } from './directives//home/home.component';
-import { HomepageComponent } from './directives//homepage/homepage.component';
+import { HomepageComponent } from './directives/homepage/homepage.component';
 import { AuthGuard } from './guards/auth.guard';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { AlertService } from './services/alert.service';
@@ -29,7 +29,8 @@ import { map, catchError, tap } from 'rxjs/operators';
     HomeComponent,
     RegisterComponent,
     AlertComponent,
-    HomepageComponent,
+    HomepageComponent
+
   ],
   imports: [
     BrowserModule,
