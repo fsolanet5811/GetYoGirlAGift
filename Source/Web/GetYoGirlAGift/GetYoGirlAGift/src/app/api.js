@@ -44,7 +44,7 @@ export async function getToken(tokenCredentials) {
       return response.json()
         .then(parsed => {
           console.log(parsed);
-          return parsed.access_token;
+          return parsed;
         });
     });
 }
@@ -81,21 +81,26 @@ export async function login(loginRequest, token) {
 
 //Add User function
 export async function addUser(signupRequest, token) {
-    return await fetch(baseAddress + '/api/users/signup', {
-        body: JSON.stringify(signupRequest),
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'token': token
-        }
-    })
-        .then(response => {
-            return response.json()
-                .then(parsed => {
-                    console.log(parsed);
-                    return parsed;
-                });
+
+  console.log(token);
+  var Authorization = token["token_type"] + ' ' + token["access_token"];
+
+  return await fetch(baseAddress + '/api/users/signup', {
+    body: JSON.stringify(signupRequest),
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authentication': Authorization,
+    }
+  })
+    .then(response => {
+      return response.json()
+        .then(parsed => {
+          console.log(parsed);
+          return parsed;
         });
+    });
 }
 
 //Change password function
