@@ -35,7 +35,6 @@ export async function getToken(tokenCredentials) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'token': token
     }
   })
     .then(response => {
