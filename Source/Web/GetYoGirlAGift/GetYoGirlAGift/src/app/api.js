@@ -12,6 +12,9 @@ var baseAddress = 'http://getyogirlagift.azurewebsites.net';
  *  
  * */
 
+
+
+
 export async function getToken(tokenCredentials) {
 
   var formBody = [];
@@ -41,7 +44,7 @@ export async function getToken(tokenCredentials) {
       return response.json()
         .then(parsed => {
           console.log(parsed);
-          return parsed;
+          return parsed.access_token;
         });
     });
 }
