@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
+  "defaultProject": "GetyoGirlaGift",
   "newProjectRoot": "projects",
   "projects": {
-    "ggg": {
+    "GetyoGirlaGift": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,11 +13,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ggg",
+            "outputPath": "dist/GetyoGirlaGift",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "tsconfig.json",
             "aot": true,
             "assets": [
               "src/favicon.ico",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ggg:build"
+            "browserTarget": "GetyoGirlaGift:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ggg:build:production"
+              "browserTarget": "GetyoGirlaGift:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ggg:build"
+            "browserTarget": "GetyoGirlaGift:build"
           }
         },
         "test": {
@@ -112,15 +112,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ggg:serve"
+            "devServerTarget": "GetyoGirlaGift:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ggg:serve:production"
+              "devServerTarget": "GetyoGirlaGift:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "ggg"
+    }
+  },
+  "version": 1
 }
