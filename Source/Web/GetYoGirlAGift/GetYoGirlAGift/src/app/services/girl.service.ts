@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { Girl } from '../models/girl';
 
 @Injectable()
@@ -16,11 +15,11 @@ export class girlService {
   }
 
   register(girl: Girl) {
-    return this.http.post('${config.apiUrl}/users/register', Girl);
+    return this.http.post('${config.apiUrl}/users/register', girl);
   }
 
   update(girl: Girl) {
-    return this.http.put('${config.apiUrl}/girls/' + Girl.Id, Girl);
+    return this.http.put('${config.apiUrl}/girls/' + girl.Id, girl);
   }
 
   delete(id: number) {

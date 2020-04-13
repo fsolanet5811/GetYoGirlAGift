@@ -25,5 +25,7 @@
   /*True to convert classes to interfaces, false to convert classes to classes. Default is true*/
   "csharp2ts.classToInterface": true,
   /*True to preserve fields and property modifiers. Default is false*/
-  "csharp2ts.preserveModifiers": false
+  "csharp2ts.preserveModifiers": false,
+  /* This will help stop the stupid experimentalDecorator issue */
+  "javascript.implicitProjectConfig.experimentalDecorators": true
 }
