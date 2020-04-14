@@ -1,11 +1,12 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.Owin;
 using Owin;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.Owin.Cors;
 using GetYoGirlAGift.Authentication;
-using System.Web.Http;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+
 
 [assembly: OwinStartup(typeof(GetYoGirlAGift.Startup))]
 namespace GetYoGirlAGift
@@ -25,11 +26,6 @@ namespace GetYoGirlAGift
                 Provider = new AuthorizationServerProvider()
             };
 
-            app.UseOAuthAuthorizationServer(options);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-
-            HttpConfiguration config = new HttpConfiguration();
-            WebApiConfig.Register(config);
-        }
+    }
     }
 }
