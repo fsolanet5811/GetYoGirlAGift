@@ -18,14 +18,10 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>
-    </IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>
-    </IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>
-    </IISExpressUseClassicPipelineMode>
+    <IISExpressSSLPort>61414</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -206,65 +202,6 @@
     <Content Include="EmailVerifiedPage.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="src\app\api.js" />
-    <Content Include="src\app\app.component.css" />
-    <Content Include="src\app\app.component.html" />
-    <Content Include="src\app\directives\about\about.component.css" />
-    <Content Include="src\app\directives\about\about.component.html" />
-    <Content Include="src\app\directives\add-girl\add-girl.component.css" />
-    <Content Include="src\app\directives\add-girl\add-girl.component.html" />
-    <Content Include="src\app\directives\alert\alert.component.html" />
-    <Content Include="src\app\directives\homepage\homepage.component.css" />
-    <Content Include="src\app\directives\homepage\homepage.component.html" />
-    <Content Include="src\app\directives\home\home.component.css" />
-    <Content Include="src\app\directives\home\home.component.html" />
-    <Content Include="src\app\directives\image-upload\image-upload.component.css" />
-    <Content Include="src\app\directives\image-upload\image-upload.component.html" />
-    <Content Include="src\app\directives\login\login.component.css" />
-    <Content Include="src\app\directives\login\login.component.html" />
-    <Content Include="src\app\directives\navigation\navigation.component.css" />
-    <Content Include="src\app\directives\navigation\navigation.component.html" />
-    <Content Include="src\app\directives\register\register.component.css" />
-    <Content Include="src\app\directives\register\register.component.html" />
-    <Content Include="src\assets\images\back_all.gif" />
-    <Content Include="src\assets\images\back_bottom3.jpg" />
-    <Content Include="src\assets\images\BeastMaster64.png" />
-    <Content Include="src\assets\images\belle.jpg" />
-    <Content Include="src\assets\images\black_bl.gif" />
-    <Content Include="src\assets\images\black_br.gif" />
-    <Content Include="src\assets\images\black_tl.gif" />
-    <Content Include="src\assets\images\black_tr.gif" />
-    <Content Include="src\assets\images\body_left.jpg" />
-    <Content Include="src\assets\images\btn_footer.gif" />
-    <Content Include="src\assets\images\btn_header.gif" />
-    <Content Include="src\assets\images\buttons_back.gif" />
-    <Content Include="src\assets\images\buttons_back_r.gif" />
-    <Content Include="src\assets\images\comment.gif" />
-    <Content Include="src\assets\images\fidel.jpg" />
-    <Content Include="src\assets\images\header_bg.jpg" />
-    <Content Include="src\assets\images\header_left.jpg" />
-    <Content Include="src\assets\images\kju.jpg" />
-    <Content Include="src\assets\images\nav_bg.gif" />
-    <Content Include="src\assets\images\nav_left.gif" />
-    <Content Include="src\assets\images\nav_right.gif" />
-    <Content Include="src\assets\images\patric.jpg" />
-    <Content Include="src\assets\images\pic_1.jpg" />
-    <Content Include="src\assets\images\pic_2.jpg" />
-    <Content Include="src\assets\images\pic_3.jpg" />
-    <Content Include="src\assets\images\search.gif" />
-    <Content Include="src\assets\images\shrek.jpg" />
-    <Content Include="src\assets\images\small.gif" />
-    <Content Include="src\assets\images\timeicon.gif" />
-    <Content Include="src\assets\images\title.gif" />
-    <Content Include="src\assets\images\top.jpg" />
-    <Content Include="src\assets\images\top1.jpg" />
-    <Content Include="src\assets\images\top2.jpg" />
-    <Content Include="src\assets\images\top3.jpg" />
-    <Content Include="src\assets\images\waifu.png" />
-    <Content Include="src\assets\images\winnie.jpg" />
-    <Content Include="src\favicon.ico" />
-    <Content Include="src\index.html" />
-    <Content Include="src\styles.css" />
     <Content Include="VerificationEmailBody.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -306,12 +243,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\GetYoGirlAGift - Web Deploy.pubxml" />
-    <Content Include="src\.vs\ProjectSettings.json" />
-    <Content Include="src\.vs\slnx.sqlite" />
-    <Content Include="src\.vs\src\config\applicationhost.config" />
-    <Content Include="src\.vs\src\v16\.suo" />
-    <Content Include="src\.vs\VSWorkspaceState.json" />
-    <Content Include="src\assets\.gitkeep" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -321,49 +252,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="src\app\app-routing.module.ts" />
-    <TypeScriptCompile Include="src\app\app.component.spec.ts" />
-    <TypeScriptCompile Include="src\app\app.component.ts" />
-    <TypeScriptCompile Include="src\app\app.module.ts" />
-    <TypeScriptCompile Include="src\app\directives\about\about.component.spec.ts" />
-    <TypeScriptCompile Include="src\app\directives\about\about.component.ts" />
-    <TypeScriptCompile Include="src\app\directives\add-girl\add-girl.component.spec.ts" />
-    <TypeScriptCompile Include="src\app\directives\add-girl\add-girl.component.ts" />
-    <TypeScriptCompile Include="src\app\directives\alert\alert.component.spec.ts" />
-    <TypeScriptCompile Include="src\app\directives\alert\alert.component.ts" />
-    <TypeScriptCompile Include="src\app\directives\homepage\homepage.component.spec.ts" />
-    <TypeScriptCompile Include="src\app\directives\homepage\homepage.component.ts" />
-    <TypeScriptCompile Include="src\app\directives\home\home.component.spec.ts" />
-    <TypeScriptCompile Include="src\app\directives\home\home.component.ts" />
-    <TypeScriptCompile Include="src\app\directives\image-upload\image-upload.component.spec.ts" />
-    <TypeScriptCompile Include="src\app\directives\image-upload\image-upload.component.ts" />
-    <TypeScriptCompile Include="src\app\directives\login\login.component.spec.ts" />
-    <TypeScriptCompile Include="src\app\directives\login\login.component.ts" />
-    <TypeScriptCompile Include="src\app\directives\navigation\navigation.component.spec.ts" />
-    <TypeScriptCompile Include="src\app\directives\navigation\navigation.component.ts" />
-    <TypeScriptCompile Include="src\app\directives\register\register.component.spec.ts" />
-    <TypeScriptCompile Include="src\app\directives\register\register.component.ts" />
-    <TypeScriptCompile Include="src\app\guards\auth.guard.ts" />
-    <TypeScriptCompile Include="src\app\helpers\error.interceptor.spec.ts" />
-    <TypeScriptCompile Include="src\app\helpers\error.interceptor.ts" />
-    <TypeScriptCompile Include="src\app\helpers\fake-backend.ts" />
-    <TypeScriptCompile Include="src\app\helpers\jwt.interceptor.ts" />
-    <TypeScriptCompile Include="src\app\models\girl.ts" />
-    <TypeScriptCompile Include="src\app\models\user.ts" />
-    <TypeScriptCompile Include="src\app\services\alert.service.ts" />
-    <TypeScriptCompile Include="src\app\services\authentication.service.ts" />
-    <TypeScriptCompile Include="src\app\services\girl.service.ts" />
-    <TypeScriptCompile Include="src\app\services\image.service.ts" />
-    <TypeScriptCompile Include="src\app\services\rest.service.ts" />
-    <TypeScriptCompile Include="src\app\services\user.service.ts" />
-    <TypeScriptCompile Include="src\environments\environment.prod.ts" />
-    <TypeScriptCompile Include="src\environments\environment.ts" />
-    <TypeScriptCompile Include="src\main.ts" />
-    <TypeScriptCompile Include="src\polyfills.ts" />
-    <TypeScriptCompile Include="src\test.ts" />
-    <TypeScriptCompile Include="src\typings.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
