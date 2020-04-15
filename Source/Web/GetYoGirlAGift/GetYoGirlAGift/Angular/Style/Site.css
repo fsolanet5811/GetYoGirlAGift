@@ -1,0 +1,280 @@
+﻿
+
+
+body {
+    padding-bottom: 20px;
+    /*background-color: #fffdf2;*/
+    background-color: #fffff2;
+    color: black;
+    height: 100%;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select {
+    max-width: 380px;
+}
+
+.navbar-text {
+    min-height:36px;
+}
+.navbar {
+    background-color:white;
+}
+
+.btn-create {  background-color:#54b233;}
+.btn-create:hover { background-color:#419025; }
+.btn-search {
+    background-color: #a94442;
+}
+.btn-search:hover {background-color:#5d2f7d; }
+.btn-warning {background-color:#d7820c; border-color:#d7820c; }
+.btn-warning:hover { background-color:#b77314; border-color:#b77314; }
+
+.btn-rdo { background-color:#4d4d4d; min-width: 55px; font-size:18px; }
+.btn-rdo.active { background-color:#54b233; }
+
+.yes-no-list > .item > label > div {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    /*height: 60px;*/
+    padding: 10px 0px 0px 0px;
+}
+.yes-no-list > .item > label {
+    /*display:block;*/
+    text-align:center;
+    font-size:14px;
+    /*background-color:#484f5e;*/
+    border-radius:4px 4px 0px 0px;
+}
+.yes-no-list > .item > .btn-group { 
+    /*margin-top:10px;*/
+}
+
+.rdo-no.active{
+    background-color:#b42020;
+}
+.rdo-na.active{
+    background-color:#d7820c;
+}
+
+.yes-no-list > .item {
+    display: inline-block;
+    padding: 0;
+    margin: 30px 30px 40px 0px;
+    text-align: center;
+    /*min-height:130px;*/
+    background-color: #1c1f28;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 250px;
+    max-width: 250px;
+    box-shadow: none;
+}
+.yes-no-list {
+    text-align: center;
+    padding: 20px;
+}
+
+.as-label {
+    background-color:transparent !important;
+    border-color:transparent !important;
+    color:white;
+}
+
+.form-inline.panel > .row {
+    margin-left:5px;
+}
+
+.btn {
+    color:white;
+    margin:5px;
+    font-size: 18px;
+}
+.btn:hover{
+    color:#d0e0eb;
+}
+
+.nav-tabs {
+    border: none;
+}
+
+    .nav-tabs:hover {
+        border: none;
+        color: blue;
+        border-radius: 8px 8px 0px 0px;
+    }
+
+    .nav-tabs > li {
+        margin-bottom: -6px;
+    }
+
+        .nav-tabs > li > a {
+            margin-right: 2px;
+            line-height: 1.42857143;
+            /*border: 1px solid transparent;*/
+            border-radius: 8px 8px 0px 0px;
+        }
+
+.nav-tabs > li.active > a {
+    background-color: #98b598;
+    color: black;
+    border-radius: 8px 8px 0px 0px;
+    border: none;
+}
+
+    .nav-tabs > li.active > a:focus {
+        background-color: #98b598;
+        border: none;
+    }
+
+
+        .nav-tabs > li > a:hover {
+            border: none !important;
+            background-color: transparent;
+            color:blue;
+        }
+
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    /*background-color: #98b598 !important;*/
+}
+
+.tab-content {
+    background-color: #98b598 !important
+}
+
+.form-group {
+ margin:5px !important;
+}
+
+.panel {
+    /*background-color: #98b598 !important;*/
+}
+
+
+.modal-header {
+    border-radius:4px 4px 0px 0px;
+    background-color:#394152;
+}
+.modal-body {
+    box-shadow: none;
+    background-color:#646a78;
+}
+.modal-footer {
+    border-radius:0px 0px 4px 4px;
+     background-color:#45494f;
+}
+.modal-footer > input {
+    vertical-align:top;
+}
+tr.odd {
+    background-color: #fcf8e3;
+}
+
+
+
+th{
+    border-bottom: 1px solid #999 !important;
+}
+th.sorting {
+    /*background-color:#333b5b !important;*/
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+
+.table-hover > tbody > tr:hover {
+ background-color:#484f5e !important;
+}
+.c-link{
+    cursor:pointer;
+}
+
+
+
+
+/* Rounded sliders */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 22px;
+        width: 22px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+
+.slider.round {
+    border-radius: 30px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+
+

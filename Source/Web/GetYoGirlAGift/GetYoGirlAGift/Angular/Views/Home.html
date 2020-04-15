@@ -1,0 +1,270 @@
+﻿
+
+
+<div class="" ng-cloak ng-show=" !gettingJobs && !gettingInspections && !processing ">
+
+
+    <div class="row" style="width: 1470px">
+        <div class="col-md-12">
+            <div class="panel panel-success" style="border-color:#98bc99">
+                <div class="panel-heading center-controls" style="background-color:#b0cfa3; border-color: #98bc99; color: #2c4f2d">
+
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="text-align: left">
+                                <strong style="font-size:large">Inspections</strong>
+                            </td>
+
+                            <td style="width:auto;"> </td>
+                            <td style="text-align: right; width: 130px">
+                                <input type="button" ng-show="ExpandedInspections.length > 0" ng-click="ExpandAllOrCollapseAll();" class="btn btn-blue btn-xs"
+                                       value="{{ExpandedInspections.length > 0 ? 'Collapse All' : 'Expand All'}}"
+                                       style=" background-color: #3b703c; border-color: #375f37; color: white;" />
+                            </td>
+                            <td style="text-align: right; width: 200px">
+                                <label>
+                                    <input ng-click="home.showDowns = ! home.showDowns" type="checkbox" ng-checked="home.showDowns"
+                                           style="width: 18px; height: 18px; margin: 0px; vertical-align: sub;" />
+                                    Show Downs
+                                </label>
+                            </td>
+
+                        </tr>
+                    </table>
+
+
+                </div>
+
+                <div class="panel panel-default" style="margin-bottom: 0px; border: none">
+                    <div class="panel-body">
+
+                        <!-- NO INSPECTIONS FOUND -->
+                        <table ng-show="inspections.data.length == 0" style="width: 100%; border: none; margin: 10px 0px 0px 0px">
+                            <tr>
+                                <td style="text-align: center; color: crimson"><h4>No inspections found in the system for {{user.RoleName == 'Admin' ? 'any user' : user.FullName }}</h4></td>
+                            </tr>
+                        </table>
+
+
+                        <div ng-show="inspections.data.length > 0" style="border-radius: 8px; border: 1px solid #B6BBB1; background-color: #f5f8f4; padding: 15px; margin-top: 20px">
+
+
+                            <!-- INSPECTIONS COLUMN HEADINGS -->
+                            <table ng-show="inspections.data.length > 0" style="width: 100%; border: none; margin: 10px 0px 0px 0px">
+                                <tr style="border-bottom: 1px solid gray">
+                                    <td style="width:20px; min-width: 20px;"></td>
+                                    <td ng-click="SortInspection('InspectionDtm')" style="width:330px; min-width: 330px;">
+                                        <label>Date</label>
+                                        <img ng-show="inspectionSortColumn == 'InspectionDtm' && inspectionSortOrder" src="/Angular/Images/sort_desc.png" />
+                                        <img ng-show="inspectionSortColumn == 'InspectionDtm' && !inspectionSortOrder" src="/Angular/Images/sort_asc.png" />
+                                    </td>
+                                    <td ng-click="SortInspection('Area')" style="width:130px; min-width: 130px;">
+                                        <label>Area</label>
+                                        <img ng-show="inspectionSortColumn == 'Area' && inspectionSortOrder" src="/Angular/Images/sort_desc.png" />
+                                        <img ng-show="inspectionSortColumn == 'Area' && !inspectionSortOrder" src="/Angular/Images/sort_asc.png" />
+                                    </td>
+                                    <td ng-click="SortInspection('MachineName')" style="width:120px; min-width: 120px;">
+                                        <label>Machine</label>
+                                        <img ng-show="inspectionSortColumn == 'MachineName' && inspectionSortOrder" src="/Angular/Images/sort_desc.png" />
+                                        <img ng-show="inspectionSortColumn == 'MachineName' && !inspectionSortOrder" src="/Angular/Images/sort_asc.png" />
+                                    </td>
+                                    <td ng-click="SortInspection('JobNumber')" style="width:120px; min-width: 120px;">
+                                        <label>Job Number</label>
+                                        <img ng-show="inspectionSortColumn == 'JobNumber' && inspectionSortOrder" src="/Angular/Images/sort_desc.png" />
+                                        <img ng-show="inspectionSortColumn == 'JobNumber' && !inspectionSortOrder" src="/Angular/Images/sort_asc.png" />
+                                    </td>
+                                    <td ng-click="SortInspection('DropName')" style="width:70px; min-width: 70px;">
+                                        <label>Drop</label>
+                                        <img ng-show="inspectionSortColumn == 'DropName' && inspectionSortOrder" src="/Angular/Images/sort_desc.png" />
+                                        <img ng-show="inspectionSortColumn == 'DropName' && !inspectionSortOrder" src="/Angular/Images/sort_asc.png" />
+                                    </td>
+                                    <td ng-click="SortInspection('ShellAndVersion')" style="width:330px; min-width: 330px;">
+                                        <label>ShellAndVersion</label>
+                                        <img ng-show="inspectionSortColumn == 'ShellAndVersion' && inspectionSortOrder" src="/Angular/Images/sort_desc.png" />
+                                        <img ng-show="inspectionSortColumn == 'ShellAndVersion' && !inspectionSortOrder" src="/Angular/Images/sort_asc.png" />
+                                    </td>
+                                    <td ng-click="SortInspection('TrayOrPallet')" style="width:150px; min-width: 150px;">
+                                        <label>TrayOrPallet</label>
+                                        <img ng-show="inspectionSortColumn == 'TrayOrPallet' && inspectionSortOrder" src="/Angular/Images/sort_desc.png" />
+                                        <img ng-show="inspectionSortColumn == 'TrayOrPallet' && !inspectionSortOrder" src="/Angular/Images/sort_asc.png" />
+                                    </td>
+                                    <td ng-click="SortInspection('ClientName')" style="width:200px; min-width: 200px;">
+                                        <label>Client Name</label>
+                                        <img ng-show="inspectionSortColumn == 'ClientName' && inspectionSortOrder" src="/Angular/Images/sort_desc.png" />
+                                        <img ng-show="inspectionSortColumn == 'ClientName' && !inspectionSortOrder" src="/Angular/Images/sort_asc.png" />
+                                    </td>
+                                    <td ng-click="SortInspection('ID')" style="width:70px; min-width: 70px;">
+                                        <label>ID</label>
+                                        <img ng-show="inspectionSortColumn == 'ID' && inspectionSortOrder" src="/Angular/Images/sort_desc.png" />
+                                        <img ng-show="inspectionSortColumn == 'ID' && !inspectionSortOrder" src="/Angular/Images/sort_asc.png" />
+                                    </td>
+                                    <td ng-click="SortInspection('StatusName')" style="width:150px; min-width: 150px;">
+                                        <label>Status</label>
+                                        <img ng-show="inspectionSortColumn == 'StatusName' && inspectionSortOrder" src="/Angular/Images/sort_desc.png" />
+                                        <img ng-show="inspectionSortColumn == 'StatusName' && !inspectionSortOrder" src="/Angular/Images/sort_asc.png" />
+                                    </td>
+                                    <td style="text-align: right; min-width: 160px;">
+                                        <label>Action</label>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- ROWS -->
+                            <table ng-show="inspections.data.length > 0" style="width: 100%; border: none; margin: 10px 0px 10px 0px"
+                                   ng-repeat="i in inspections.data | orderBy: inspectionSortColumn: inspectionSortOrder track by $index">
+                                <tr>
+                                    <td style="width:20px; min-width: 20px;">
+                                        <div ng-click="ExpandOrCollapse(r.ID);">
+                                            <i class="glyphicon glyphicon-plus-sign" ng-show="ExpandedInspections.indexOf(r.ID) == -1"></i>
+                                            <i class="glyphicon glyphicon-minus-sign" ng-show="ExpandedInspections.indexOf(r.ID) > -1"></i>
+                                        </div>
+                                    </td>
+                                    <td style="width: 200px; height: 30px; min-width: 200px;">
+                                        <div ng-click="ExpandOrCollapse(i.ID);">{{i.InspectionDtm}}</div>
+                                    </td>
+                                    <td style="width: 200px; height: 30px; min-width: 200px;">
+                                        <div ng-click="ExpandOrCollapse(i.ID);">{{i.Area}}</div>
+                                    </td>
+                                    <td style="width: 200px; height: 30px; min-width: 200px;">
+                                        <div ng-click="ExpandOrCollapse(i.ID);">{{i.MachineName}}</div>
+                                    </td>
+                                    <td style="width: 120px; height: 30px; min-width: 120px;">
+                                        <div ng-click="ExpandOrCollapse(i.ID);">{{i.JobNumber}}</div>
+                                    </td>
+                                    <td style="width: 70px; height: 30px; min-width: 70px;">
+                                        <div ng-click="ExpandOrCollapse(i.ID);">{{i.DropName}}</div>
+                                    </td>
+                                    <td style="width: 70px; height: 30px; min-width: 70px;">
+                                        <div ng-click="ExpandOrCollapse(i.ID);">{{i.ShellAndVersion}}</div>
+                                    </td>
+                                    <td style="width: 70px; height: 30px; min-width: 70px;">
+                                        <div ng-click="ExpandOrCollapse(i.ID);">{{i.TrayOrPallet}}</div>
+                                    </td>
+                                    <td style="width: 70px; height: 30px; min-width: 70px;">
+                                        <div ng-click="ExpandOrCollapse(i.ID);">{{i.ClientName}}</div>
+                                    </td>
+                                    <td style="width: 70px; height: 30px; min-width: 70px;">
+                                        <div ng-click="ExpandOrCollapse(i.ID);">{{i.ID}}</div>
+                                    </td>
+                                    <td style="width: 150px; height: 30px; min-width: 150px;">
+                                        <span ng-style=" i.StatusName == 'Submitted' && {'color': 'green'}; i.StatusName == 'Saved' && {'color': 'red', 'font-weight': 'bold'}">
+                                            <div ng-click="ExpandOrCollapse(i.ID);">{{i.StatusName}}</div>
+                                        </span>
+                                    </td>
+                                    <td style="text-align: right; min-width: 160px">
+                                        <input type="button" ng-click="EditInspection(i);" class="btn btn-info btn-xs" value="Edit"/>
+                                        <button class="btn btn-success btn-xs" ng-click="SubmitInspectionConfirm(i)"
+                                                style="margin: 3px 0px 3px 0px !important; background-color:darkgreen; color:white; border-color:darkgreen;"
+                                                data-toggle="modal" data-target="#modalDialog">
+                                            Submit
+                                        </button>
+                                        <button class="btn btn-danger btn-xs" ng-click="DeleteInspectionConfirm(i)"
+                                                style="margin: 3px 0px 3px 0px !important; background-color:red; color:white; border-color:red;"
+                                                data-toggle="modal" data-target="#modalDialog" >
+                                            Del
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!--        INSPECTION DETAILS       -->
+                                <tr ng-show="(ExpandedInspections.indexOf(i.ID) > -1)">
+
+                                    <td></td>
+                                    <td style="width:auto;" colspan="9">
+                                        <div ng-show="i.InspectionInfos.length > 0" style="border-radius: 5px; border: 1px solid #B6BBB1; background-color:#daefda; padding: 5px; margin-top: 5px">
+                                            <strong>Inspection Details</strong>
+                                            <table style="width: 100%; margin: 0px 0px 0px 0px;" >
+
+                                                <!--   QUESTIONS HEADERS   -->
+                                                <tr style="border-bottom: 1px solid gray" ng-show="!i.IsDown">
+                                                    <td ng-click="SortInspectionInfo (r, 'Question')" style="width:250px;">
+                                                        <label>Question</label>
+                                                        <img ng-show="i.InspectionInfoSortColumn == 'Question' && i.InspectionInfoSortOrder" src="/Angular/Images/sort_desc.png" />
+                                                        <img ng-show="i.InspectionInfoSortColumn == 'Question' && !i.InspectionInfoSortOrder" src="/Angular/Images/sort_asc.png" />
+                                                    </td>
+                                                    <td ng-click="SortInspectionInfo(i, 'Answer')" style="width:200px;">
+                                                        <label>Answer</label>
+                                                        <img ng-show="i.InspectionInfoSortColumn == 'Answer' && i.InspectionInfoSortOrder" src="/Angular/Images/sort_desc.png" />
+                                                        <img ng-show="i.InspectionInfoSortColumn == 'Answer' && !i.InspectionInfoSortOrder" src="/Angular/Images/sort_asc.png" />
+                                                    </td>
+                                                </tr>
+
+                                                <!--   DOWN MESSAGE   -->
+                                                <tr style="border-bottom: 1px solid gray" ng-show="i.IsDown">
+                                                    <td colspan="2" style="text-align: center; border-bottom: 1px solid lightgray">
+                                                        <strong style="color: darkgreen">Machine was down</strong>
+                                                    </td>
+                                                </tr>
+
+                                                <!--  QUESTIONS  -->
+                                                <tr ng-repeat="b in i.InspectionInfos | orderBy: i.InspectionInfoSortColumn: i.InspectionInfoSortOrder track by $index"
+                                                    ng-if="!i.IsDown"
+                                                    ng-style="($index < i.InspectionInfos.length - 1) && { 'border-bottom': '1px solid lightgray' } ">
+
+                                                    <td style="width: 80px; height: 30px">
+                                                        {{b.Question}}
+                                                    </td>
+
+                                                    <td style="width: 250px; height: 30px">
+                                                        {{b.Answer}}
+                                                    </td>
+                                                </tr>
+
+                                                <!--   COMMENT   -->
+                                                <tr>
+                                                    <td style="width: 300px; height: 30px">
+                                                        {{I.Comment}}
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <!--        LOADING INSPECTION       -->
+                                <tr ng-show="(ExpandedInspections.indexOf(i.ID) > -1) && gettingInspectionInfo && (ExpandedInspectionID == i.ID)">
+                                    <td colspan="10" style="text-align: center; border-bottom: 1px solid lightgray;">
+                                        <img alt="" src="/Angular/Images/loader.gif" style="height: 40px;" />
+                                        <br />
+                                        <strong style="color: darkgreen">Loading inspection details...</strong>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<div id="divLoading" style="vertical-align:middle; " ng-show="gettingJobs || gettingInspections || processing ">
+    <table style="width: 100%; height: 100%">
+        <tr>
+            <td style="text-align: center;vertical-align:middle; width: 100%">
+                <img alt="" src="/Angular/Images/loader.gif"/><br /><h4 style="color: darkslategrey">{{msg}}</h4>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+

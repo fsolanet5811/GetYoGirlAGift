@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html ng-app="GetYoGirlAGiftApp" style="width: 100%; height: 100%;">
+
+<head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="Vary" content="*" />
+
+
+    <title>WQA</title>
+    <script src="/Angular/Js/jquery.js"></script>
+    <script src="/Angular/Js/angular.js"></script>
+    <script src="/Angular/Js/angular-ui-router.js"></script>
+
+    <script src="/Angular/Js/GetYoGirlAGiftApp.js"></script>
+    <script src="/Angular/Controllers/LoginController.js"></script>
+    <script src="/Angular/Controllers/HomeController.js"></script>
+
+
+    <link href="/Angular/Style/Site.css" rel="stylesheet" />
+    <link href="/Angular/Style/Style.css" rel="stylesheet" />
+    <link href="/Angular/Style/bootstrap.css" rel="stylesheet" />
+
+    <script>
+        // If not Chrome, then quit
+        if (navigator.userAgent.indexOf('Chrome') == -1) {
+            window.location.replace("/Angular/Views/error.html");
+        }
+    </script>
+
+
+
+
+
+    <style>
+        #divReportDate {
+            display: none;
+        }
+
+        /*td {border: 1px solid red}*/
+        .popover {
+            background-color: indianred;
+            padding: 0px !important;
+        }
+
+        .popover-content {
+            padding: 0px !important;
+        }
+
+        #tblpopover a {
+            color: #ffffff !important;
+        }
+
+        a {
+            font-size: large;
+            /*color: #ffffff !important;*/
+            text-decoration: none;
+        }
+
+
+
+        td {
+            vertical-align: middle !important;
+        }
+
+        table {
+            border-radius: 5px;
+            /*border-radius: 5px 5px 0px 0px !important;*/
+        }
+
+        .modal-header {
+            border-bottom: none !important;
+        }
+
+        #userModal .modal-dialog {
+            position: relative !important;
+            width: 250px;
+            left: auto;
+            right: -40%;
+            box-shadow: none;
+        }
+
+
+
+        .UserOptionsButton {
+            background-color: transparent;
+            border: none !important;
+            color: darkslategray;
+            font-size: 14px;
+        }
+
+            .UserOptionsButton:focus {
+                outline: none;
+                /*border: none;*/
+            }
+
+        #divLoading {
+            opacity: 0.6;
+            /*background: tr;*/
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="page" style="height: 100%">
+        <table style="width: 100%; height: 100%; margin-top: 0px; background-color: #e3f2f7;" class="tblEvents">
+
+            <!-- Top bar -->
+            <tr style="background-color:white; border-bottom: 1px solid darkslategrey">
+                <td colspan="4" style=" margin: 0px; height: 54px; text-align: left !important;">
+
+                    <a class="" href="" onclick="return GoHome(); return false" style="vertical-align:middle">
+                        <img src="/Angular/Images/WES_logo.png" style="width: 91.94px; height: 40px; margin: 3px 15px 5px 15px;" />
+                    </a>
+                    <span style="margin: 13px 0px 10px 20px; font-size: 24px; vertical-align: middle; color:royalblue" id="FL or Vegas">
+                        Get Yo Girl A Gift
+                    </span>
+                </td>
+
+                <td style=" width: 350px;">
+                    <a class="" ng-click="Logout()" ng-show="user.FullName" style="margin: 0px; color:dimgray">
+                        <span style="font-size: larger"><i class="glyphicon glyphicon-log-out"></i> Log out</span>
+                    </a>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td style="width: 50px;"></td>
+                <td colspan="3" style="width:auto; padding-top: 40px; vertical-align: 200px; ">
+                    <main class="container" style="width:1400px; margin: 0px auto 0px 5%;" ui-view></main>
+
+                    <div id="divLoading" style="vertical-align:middle;" ng-show="processing">
+                        <table style="width: 100%; height: 100%">
+                            <tr>
+                                <td style="text-align: center;vertical-align:middle; width: 100%">
+                                    <img alt="" src="../../Angular/images/loader.gif" /><br />
+                                    <h4><div ng-model="divLoadingMessage"></div></h4>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td style="width: 50px;"></td>
+            </tr>
+            <tr>
+                <td style="width:50px"></td>
+                <td colspan="2">
+                    <div class99="container">
+                        <hr />
+                        <footer>
+                            <p>&copy; @DateTime.Now.Year - WQA Application</p>
+                        </footer>
+                    </div>
+                </td>
+                <td style="width:50px"></td>
+            </tr>
+        </table>
+
+
+    </div>
+
+
+    <!--@*    <form action="@(HttpRuntime.AppDomainAppVirtualPath.Length > 1 ? HttpRuntime.AppDomainAppVirtualPath:" ")/Home/SaveOfflineReport" method="post" name="frmReportData" id="frmReportData">
+        *@
+        <form action="@(virtualPath)/Home/SaveOfflineReport" method="post" name="frmReportData" id="frmReportData">
+            <input type="hidden" name="hidReportData" id="hidReportData" />
+            <input type="hidden" name="hidFinalizeReport" id="hidFinalizeReport" value="False" />
+        </form>-->
+
+
+
+
+        <!--<div class="modal fade" role="dialog" id="modalSessionLost">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header alert-warning">
+                        <button type="button" id="modalSessionLost" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"> Close </span></button>
+                        <span class="modal-title"><span class="glyphicon glyphicon-warning-sign"></span> <b>Your session has expired</b></span>
+                    </div>
+                    <div class="modal-body">
+                        <span>Sorry for the inconvenience, but your session has expired. Trying to submit any information at this point may result in lost information.</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="modalSessionLost" class="btn-danger" data-dismiss="modal" aria-label="Close"> Close </button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+        <!--<script>
+        var keepAliveTmr;
+        $(document).ready(function () {
+            //KeepAliveAjaxCall();
+            keepAliveTmr = setInterval(KeepAliveAjaxCall, 30000000);
+        });
+
+        function KeepAliveCallBack(result) {
+            if (result.Status == 'new') {
+                //alert("session lost");
+                $('#modalSessionLost').modal('show');
+                clearInterval(keepAliveTmr)
+            }
+        }
+
+        function KeepAliveAjaxCall() {
+            //$.post('@(HttpRuntime.AppDomainAppVirtualPath.Length > 1 ? HttpRuntime.AppDomainAppVirtualPath:"")/System/KeepAlive?t=@Model.appSession.KeepAliveToken', KeepAliveCallBack);
+            $.post('System/KeepAlive?t=@Model.appSession.KeepAliveToken', KeepAliveCallBack);
+        }
+
+        //function ClearLocalStorage()
+        //{
+        //    localStorage.clear();
+        //}
+
+        //function GoHome()
+        //{
+        //    BackToIndex();
+        //}
+
+        </script>-->
+
+        
+</body>
+
+</html>
