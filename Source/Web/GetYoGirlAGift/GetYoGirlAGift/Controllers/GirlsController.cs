@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -55,13 +55,14 @@ namespace GetYoGirlAGift.Controllers
 
             // We need to set the girl id of all the images that this girl has.
             girl.PutIdInProperties();
-            db.Entry(girl).State = EntityState.Modified;
-
+            
             // This will let EF know that a change to the girl's properties has been made.
             AlertEntityFrameworkOfPropertyChanges(girl);
+            db.Entry(girl).State = EntityState.Modified;
 
-            try
-            {
+
+      try
+      {
                 db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)

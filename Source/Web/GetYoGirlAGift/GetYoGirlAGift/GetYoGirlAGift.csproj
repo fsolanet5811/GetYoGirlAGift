@@ -203,6 +203,7 @@
     <Content Include="Angular\Controllers\LoginController.js" />
     <Content Include="Angular\Controllers\SearchController.js" />
     <Content Include="Angular\Images\loader.gif" />
+    <Content Include="Angular\Images\plus.png" />
     <Content Include="Angular\Images\redx.png" />
     <Content Include="Angular\Images\sorry.png" />
     <Content Include="Angular\Images\sort_asc.png" />

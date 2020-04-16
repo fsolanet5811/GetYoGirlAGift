@@ -87,6 +87,7 @@
 			}
 
 			function UpdateGirl(girl) {
+				$scope.processing = true;
 				$http({
 					method: 'Put',
 					params: {
@@ -100,6 +101,7 @@
 					data: girl
 				})
 				.then(function (response) {
+					$scope.processing = false;
 					$scope.GoToHomePage(true);
 				}, function (error) {
 					//$rootScope.user = {};

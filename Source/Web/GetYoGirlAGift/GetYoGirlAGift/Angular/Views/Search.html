@@ -1,9 +1,20 @@
 ﻿<div>
-    <label>
-        Occassion:
-    </label>
-    <input class="form-control"/>
-    <button ng-click="SearchGifts()">Search</button>
+    <table>
+        <tr>
+            <td>
+                <label>
+                    Occassion:
+                </label>
+                <input class="form-control"/>
+                <button ng-click="SearchGifts()">Search</button>
+            </td>
+            <td>
+                <img ng-src="data:image/JPEG;base64,{{selectedGirl.Images[0].Image}}"/>
+            </td>
+        </tr>
+        
+    </table>
+    
     <div ng-repeat="g in gifts">
         <table>
             <tr>
@@ -11,7 +22,7 @@
                     <img ng-src="data:image/JPEG;base64,{{g.Picture}}"/>
                 </td>
                 <td>
-                    
+
                 </td>
             </tr>
         </table>

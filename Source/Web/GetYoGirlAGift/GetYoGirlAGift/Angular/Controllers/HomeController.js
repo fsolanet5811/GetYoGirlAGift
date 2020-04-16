@@ -64,7 +64,17 @@ getYoGirlAGiftApp.controller('HomeController', [
         }
 
         $rootScope.AddGirl = function () {
-            $scope.selectedGirl = undefined;
+            $scope.selectedGirl = {
+                Id: 0,
+                Name: '',
+                Interests: [],
+                ImportantDates: [],
+                Images: [{
+                    Image:'',
+                    Id: 0
+                }],
+                Relationship: 0
+            };
             $scope.goToAddEditGirl();
         }
 
