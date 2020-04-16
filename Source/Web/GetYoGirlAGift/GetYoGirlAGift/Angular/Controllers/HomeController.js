@@ -26,8 +26,13 @@ getYoGirlAGiftApp.controller('HomeController', [
 
         if ($rootScope.home.showDowns == undefined) $rootScope.home.showDowns = true;
 
+        $scope.ShowLoading = function (msg) {
+            $scope.msg = msg;
+            $scope.processing = true;
+        }
+
         $rootScope.GetGirls = function() {
-            $scope.ShowLoading("Loading girls...")
+            $scope.ShowLoading("Loading girls...");
             $http({
                 method: 'GET',
                 headers: {
@@ -122,10 +127,7 @@ getYoGirlAGiftApp.controller('HomeController', [
           $state.go('search', { selectedGirl: $scope.selectedGirl });
         }
 
-        $scope.ShowLoading = function (msg) {
-            $scope.msg = msg;
-            $scope.processing = true;
-        }
+       
 
         $rootScope.Logout = function () {
             $rootScope.user.UserName = "";

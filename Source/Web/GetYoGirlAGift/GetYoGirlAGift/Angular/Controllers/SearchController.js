@@ -16,7 +16,9 @@
 				$scope.selectedGirl = $stateParams.selectedGirl;
 			}
 			
+			$scope.gifts = [];
 			$scope.processing = false;
+			$scope.occassion = '';
 			$scope.AddInterest = function() {
 				$scope.selectedGirl.Interests.push({Id: 0,
 				Value: $scope.newInterest})
@@ -24,84 +26,23 @@
 				$scope.newInterest = '';
 			}
 
-			$scope.previewFile = function() {
-				const file = $scope.imageFiles[0];
-				const reader = new FileReader();
-			  
-				reader.addEventListener("load", function () {
-					$scope.$apply(function() {
-						// Strip out the first part. It ends with a base64,
-					var result = reader.result.substring(reader.result.indexOf('base64,') + 7);
-
-					$scope.selectedGirl.Images[0].Image = result;
-					})				  
-				}, false);
-			  
-				if (file) {
-				  reader.readAsDataURL(file);
-				  var res = reader.result;
-				}
-			  }
-
-			$scope.RemoveInterest = function(interest) {
-				var index = 0;
-				for(var i = 0; i < $scope.selectedGirl.Interests.length; i++) {
-					if($scope.selectedGirl.Interests[i] == interest) {
-						index = i;
-						break;
-					}
-				}
-				$scope.selectedGirl.Interests.splice(index, 1);
-			}
-
-			$scope.SaveGirl = function() {
-				if($scope.selectedGirl.Id == 0) {
-					// This girl is new. Add her.
-					AddGirl($scope.selectedGirl);
-				}
-				else {
-					UpdateGirl($scope.selectedGirl);
-				}
-			}
-
-			function AddGirl(girl) {
+			$scope.SearchGifts = function () {
 				$scope.processing = true;
-				girl.UserId = $rootScope.user.Id;
 				$http({
-					method: 'POST',
+					method: 'GET',
 					headers: {
-						'Authorization': 'bearer ' + $rootScope.token,
-						'Content-Type': 'application/json'
-					  },
-					url: $rootScope.baseUrl + '/api/girls',
-					data: girl
-				})
-				.then(function (response) {
-					$scope.processing = false;
-					$scope.GoToHomePage(true);
-				}, function (error) {
-					//$rootScope.user = {};
-					$scope.processing = false;
-				});
-			}
-
-			function UpdateGirl(girl) {
-				$http({
-					method: 'Put',
-					params: {
-						'id': girl.Id
+						'Authorization': 'bearer ' + $rootScope.token
 					},
-					headers: {
-						'Authorization': 'bearer ' + $rootScope.token,
-						'Content-Type': 'application/json'
-					  },
-					url: $rootScope.baseUrl + '/api/girls',
-					data: girl
+					params: {
+						'girlId': $scope.selectedGirl.Id,
+						'occassion': $scope.occassion
+					},
+					url: $rootScope.baseUrl + '/api/gifts',
 				})
 				.then(function (response) {
-					$scope.GoToHomePage(true);
+					$scope.gifts = response.data;
+					$scope.processing = false;
 				}, function (error) {
-					//$rootScope.user = {};
 					$scope.processing = false;
 				});
 			}
