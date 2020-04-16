@@ -8,7 +8,7 @@ getYoGirlAGiftApp.controller('LoginController', ['$scope', '$rootScope', '$state
             $scope.processing = true;
         }
 
-		$rootScope.baseUrl = 'http://localhost:61414';
+		$rootScope.baseUrl = 'http://getyogirlagift.azurewebsites.net';
 
         var user = {};
         $rootScope.user = user;
@@ -85,7 +85,7 @@ getYoGirlAGiftApp.controller('LoginController', ['$scope', '$rootScope', '$state
 				$scope.processing = false;
             }, function (error) {
                 //$rootScope.user = {};
-                $rootScope.user.Message = error.data.ExceptionMessage;
+                console.log(error);
                 $state.go('login');
                 $scope.processing = false;
             });
