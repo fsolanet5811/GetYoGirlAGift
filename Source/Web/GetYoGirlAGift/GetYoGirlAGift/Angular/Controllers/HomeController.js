@@ -139,7 +139,7 @@ getYoGirlAGiftApp.controller('HomeController', [
         })
             servCall.then(function (response) {
                 if(response.data.Id == g.Id){
-                    GetGirls();
+                    $rootScope.GetGirls();
                 }
             }, function (error) {
                 ShowMessage("Error", 'Error deleting Girl: ' + error.data.ExceptionMessage, '');

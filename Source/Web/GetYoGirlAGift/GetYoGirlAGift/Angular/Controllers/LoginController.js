@@ -8,7 +8,7 @@ getYoGirlAGiftApp.controller('LoginController', ['$scope', '$rootScope', '$state
             $scope.processing = true;
         }
 
-		$rootScope.baseUrl = 'http://getyogirlagift.azurewebsites.net';
+		$rootScope.baseUrl = 'http://localhost:61414';
 
         var user = {};
         $rootScope.user = user;

@@ -1,35 +1,41 @@
 
+<div class="panel panel-success" style="border-color:#333; box-shadow: 3px 3px 8px black;">
+    <div class="panel-heading center-controls" style="background-color:#333; border-color: #333; color: white">
+        <strong style="font-size:larger">My Girls</strong>
+    </div>
 
-
-<div class="" ng-cloak>
-    <img src="/Angular/Images/plus.png" style="width: 50px; height: 50px" ng-click="AddGirl()"/>
-    <span ng-repeat="g in user.Girls">
-        <table class="card" ng-click="CardClicked(g)">
-            <tr>
-                <td colspan="2">
-                    <img style="width: 300px; margin: 10px" ng-src="data:image/JPEG;base64,{{g.Images[0].Image}}" ng-click="AddGirl()"/>
-                </td>
-            </tr>
-            <tr style="vertical-align: bottom;">
-                <td style="padding: 0px 0px 10px 10px;" ng-click="AddGirl()">
-                    {{g.Name}}
-                </td>
-                <td style="padding: 0px 10px 10px 0px;" ng-click="AddGirl()">
-                    {{g.Relationship}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align: right;">
-                    <button ng-click="EditGirl(g)" style="margin:0px 10px 10px 0px" class="btn btn-info">Edit</button>
-                    <button style="margin:0px 10px 10px 0px" class="btn btn-danger">Delete</button>
-                    
-                </td>
-            </tr>
-        </table>
-    </span>
+    <div class="panel panel-default" style="margin-bottom: 0px; border: none">
+        <div class="panel-body">
+                <div class="" ng-cloak>
+                    <img src="/Angular/Images/plus.png" style="width: 50px; height: 50px; color: white;" ng-click="AddGirl()"/>
+                    <span ng-repeat="g in user.Girls" style="width: 350px; height: 350px;">
+                        <table class="card">
+                            <tr>
+                                <td colspan="2">
+                                    <img style="width: 280px; height: 240px; margin: 10px" ng-src="data:image/JPEG;base64,{{g.Images[0].Image}}" ng-click="CardClicked()"/>
+                                </td>
+                            </tr>
+                            <tr style="vertical-align: bottom;">
+                                <td style="padding: 0px 0px 10px 10px; color: white;">
+                                    {{g.Name}}
+                                </td>
+                                <td style="padding: 0px 10px 10px 0px; color: white;">
+                                    {{RelationshipFromNumber(g.Relationship)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: right;">
+                                    <button ng-click="EditGirl(g)" style="margin:0px 10px 10px 0px" class="btn btn-info">Edit</button>
+                                    <button ng-click="DeleteGirl(g)" style="margin:0px 10px 10px 0px" class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </span>
+                </div>
+           
+        </div>
+    </div>
 </div>
-
-
 
 
 

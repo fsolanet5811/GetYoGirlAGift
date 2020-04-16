@@ -8,51 +8,66 @@
     });
 </script>
 
-<table>
-    <tr>
-        <td>
-            <label>Name:</label>
-            <input style="margin-bottom: 10px;" class="form-control" ng-model="selectedGirl.Name"/>
-            <label>Relationship:</label>
-            <select style="margin-bottom: 10px;" class="form-control" ng-model="selectedGirl.Relationship">
-                <option class="form-control" ng-repeat="r in relationships" ng-value="{{r.Id}}">{{r.Name}}</option>
-            </select>
-            <label>Interests:</label>
-            <br/>
-            <input style="margin-bottom: 10px; display: inline !important" class="form-control" ng-model="newInterest"/>
-            <button class="btn btn-info" ng-click="AddInterest()">Add</button>
-            <table>
-                <tr ng-repeat="i in selectedGirl.Interests">
-                    <td>
-                        <label>{{i.Value}}</label>
-                    </td>
-                    <td style="text-align: right;">
-                        <img src="/Angular/Images/redx.png" style="width: 25px; height: 25px;" ng-click="RemoveInterest(i)"/>
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td style="padding-left: 20px;">
-            <img style="width:300px" ng-src="data:image/JPEG;base64,{{selectedGirl.Images[0].Image}}"/>
-            
-            <button for="imageFileField" class="btn btn-info">
-                <label for="imageFileField"
-                                   style="cursor: pointer; border: none; padding: 0px !important; margin: 0px !important">
-                                Upload New Image
-                            </label>
-            </button>
-            <input type="file" image-file-model="imageFiles" class="btn blue-bg" id="imageFileField"
-                                   style="visibility:hidden; height: 1px" multiple name="images"
-                                   9ng-disabled="pushpinFilestatus.indexOf('Loading...') > -1" />
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <button class="btn btn-danger" ng-click="GoToHomePage(false)">Cancel</button>
-            <button class="btn btn-info" ng-click="SaveGirl()">Ok</button>
-        </td>
-    </tr>
-</table>
+
+
+<div class="panel panel-success" style="border-color:#333; box-shadow: 3px 3px 8px black;">
+    <div class="panel-heading center-controls" style="background-color:#333; border-color: #333; color: white">
+        <strong style="font-size:larger">Yo Girl's Information</strong>
+    </div>
+    <div class="panel panel-default" style="margin-bottom: 0px; border: none">
+        <div class="panel-body">
+                <div class="" ng-cloak>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>Name:</label>
+                                <input style="margin-bottom: 10px;" class="form-control" ng-model="selectedGirl.Name"/>
+                                <label>Relationship:</label>
+                                <select style="margin-bottom: 10px;" class="form-control" ng-model="selectedGirl.Relationship">
+                                    <option class="form-control" ng-repeat="r in relationships" ng-value="{{r.Id}}">{{r.Name}}</option>
+                                </select>
+                                <label>Interests:</label>
+                                <br/>
+                                <input style="margin-bottom: 10px; display: inline !important" class="form-control" ng-model="newInterest"/>
+                                <button style="float: right;" class="btn btn-info" ng-click="AddInterest()">Add</button>
+                                <table>
+                                    <tr ng-repeat="i in selectedGirl.Interests">
+                                        <td>
+                                            <label>{{i.Value}}</label>
+                                        </td>
+                                        <td style="text-align: right;">
+                                            <img src="/Angular/Images/redx.png" style="width: 25px; height: 25px;" ng-click="RemoveInterest(i)"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="padding-left: 50px;">
+                                <img style="width:300px" ng-src="data:image/JPEG;base64,{{selectedGirl.Images[0].Image}}"/>
+                                <div>
+                                    <button for="imageFileField" class="btn btn-info">
+                                        <label for="imageFileField"
+                                                           style="cursor: pointer; border: none; padding: 0px !important; margin: 0px !important">
+                                                        Upload New Image
+                                                    </label>
+                                    </button>
+                                    <input type="file" image-file-model="imageFiles" class="btn blue-bg" id="imageFileField"
+                                                           style="visibility:hidden; height: 1px" multiple name="images"
+                                                           9ng-disabled="pushpinFilestatus.indexOf('Loading...') > -1" />
+                                </div> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button style="margin-top: 20px;" class="btn btn-danger" ng-click="GoToHomePage(false)">Cancel</button>
+                                <button style="margin-top: 20px;" class="btn btn-info" ng-click="SaveGirl()">Ok</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+
 
 <div id="divLoading" style="vertical-align:middle; " ng-show="processing ">
     <table style="width: 100%; height: 100%">

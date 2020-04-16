@@ -203,7 +203,9 @@
     <Content Include="Angular\Controllers\LoginController.js" />
     <Content Include="Angular\Controllers\SearchController.js" />
     <Content Include="Angular\Controllers\SignupController.js" />
+    <Content Include="Angular\Images\gift.png" />
     <Content Include="Angular\Images\loader.gif" />
+    <Content Include="Angular\Images\obsessive_girl.jpg" />
     <Content Include="Angular\Images\plus.png" />
     <Content Include="Angular\Images\redx.png" />
     <Content Include="Angular\Images\sorry.png" />
@@ -214,7 +216,6 @@
     <Content Include="Angular\Images\sort_desc.png" />
     <Content Include="Angular\Images\sort_desc_disabled.png" />
     <Content Include="Angular\Images\sort_desc_orig.png" />
-    <Content Include="Angular\Images\WES_logo.png" />
     <Content Include="Angular\Js\angular-ui-router.js" />
     <Content Include="Angular\Js\angular.js" />
     <Content Include="Angular\Js\GetYoGirlAGiftApp.js" />
@@ -231,6 +232,7 @@
     <Content Include="Angular\Views\Login.html" />
     <Content Include="Angular\Views\Search.html" />
     <Content Include="Angular\Views\Signup.html" />
+    <Content Include="Angular\Images\gift.ico" />
     <Content Include="Global.asax" />
     <Content Include="EmailVerifiedPage.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

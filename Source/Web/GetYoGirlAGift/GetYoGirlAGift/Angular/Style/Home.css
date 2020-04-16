@@ -1,12 +1,14 @@
 ﻿.card {
 	/* width: 300px !important; */
 	/* height: 300px; */
-	background-color: #548e6e;
+	background-color: #222;
 	float: left;
 	margin: 20px;
-	box-shadow: 5px 5px 8px green;
+	box-shadow: 5px 5px 8px black;
+	width: 300px !important;
+	height: 300px !important;
 }
 
 .card:hover {
-	background-color: lightgreen;
+	background-color: lightcoral;
 }
