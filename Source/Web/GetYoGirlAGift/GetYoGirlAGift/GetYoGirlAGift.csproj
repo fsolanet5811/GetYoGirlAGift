@@ -235,6 +235,14 @@
     <Content Include="EmailVerifiedPage.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Swagger\api_documentation.html" />
+    <Content Include="Swagger\favicon-16x16.png" />
+    <Content Include="Swagger\favicon-32x32.png" />
+    <Content Include="Swagger\oauth2-redirect.html" />
+    <Content Include="Swagger\swagger-ui-bundle.js" />
+    <Content Include="Swagger\swagger-ui-standalone-preset.js" />
+    <Content Include="Swagger\swagger-ui.css" />
+    <Content Include="Swagger\swagger-ui.js" />
     <Content Include="VerificationEmailBody.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -276,6 +284,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\GetYoGirlAGift - Web Deploy.pubxml" />
+    <Content Include="Swagger\swagger-ui-bundle.js.map" />
+    <Content Include="Swagger\swagger-ui-standalone-preset.js.map" />
+    <Content Include="Swagger\swagger-ui.css.map" />
+    <Content Include="Swagger\swagger-ui.js.map" />
+    <Content Include="Swagger\swagger.yaml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
