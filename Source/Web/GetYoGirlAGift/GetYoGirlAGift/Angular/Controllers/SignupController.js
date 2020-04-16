@@ -8,9 +8,11 @@ function ($scope, $rootScope, $state, $http, $filter, $location) {
 		$scope.processing = true;
 	}
 
-	$rootScope.baseUrl = 'http://localhost:61414';
+	$rootScope.baseUrl = 'http://getyogirlagift.azurewebsites.net'//http://localhost:61414';
 
 	$scope.confirmPassword = '';
+
+	$scope.errorMessage = '';
 
 	var user = {};
 	$rootScope.user = user;
@@ -22,22 +24,22 @@ function ($scope, $rootScope, $state, $http, $filter, $location) {
 	$scope.signup = function () {
 		
 		if(!$rootScope.user.Email || $rootScope.user.Email == ''){
-			$rootScope.user.message = 'An email is required.';
+			$rootScope.errorMessage = 'An email is required.';
 			return;
 		}
 
 		if(!$rootScope.user.Username || $rootScope.user.Username == ''){
-			$rootScope.user.message = 'A username is required.';
+			$rootScope.errorMessage = 'A username is required.';
 			return;
 		}
 		
 		if(!$rootScope.user.Password || $rootScope.user.Password == ''){
-			$rootScope.user.message = 'A password is required.';
+			$rootScope.errorMessage = 'A password is required.';
 			return;
 		}
 
 		if($rootScope.user.Password.localeCompare($scope.confirmPassword) != 0) {
-			$rootScope.user.message = 'Passwords do not match.';
+			$rootScope.errorMessage = 'Passwords do not match.';
 			return;
 		}
 		
@@ -64,12 +66,12 @@ function ($scope, $rootScope, $state, $http, $filter, $location) {
 				$state.go('login');
 			}
 			else {
-				$rootScope.user.Message = response.data.Message;
+				$scope.errorMessage = 'Sign Up failed';
 				$scope.processing = false;
 			}
 		}, function (error) {
-			//$rootScope.user = {};
-			$rootScope.user.Message = error.data.ExceptionMessage;
+			console.log(error);
+			$scope.errorMessage = 'Sign Up failed'
 			$scope.processing = false;
 		});
 	}

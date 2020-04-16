@@ -23,12 +23,12 @@ getYoGirlAGiftApp.controller('LoginController', ['$scope', '$rootScope', '$state
         $scope.login = function () {
 			
 			if(!$rootScope.user.Username || $rootScope.user.Username == ''){
-				$rootScope.user.message = 'A username is required.';
+				$rootScope.errorMessage = 'A username is required.';
 				return;
 			}
 			
 			if(!$rootScope.user.Password || $rootScope.user.Password == ''){
-				$rootScope.user.message = 'A password is required.';
+				$rootScope.errorMessage = 'A password is required.';
 				return;
 			}
 			
