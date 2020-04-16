@@ -203,6 +203,7 @@
     <Content Include="Angular\Controllers\LoginController.js" />
     <Content Include="Angular\Controllers\SearchController.js" />
     <Content Include="Angular\Images\loader.gif" />
+    <Content Include="Angular\Images\redx.png" />
     <Content Include="Angular\Images\sorry.png" />
     <Content Include="Angular\Images\sort_asc.png" />
     <Content Include="Angular\Images\sort_asc_disabled.png" />
@@ -218,12 +219,15 @@
     <Content Include="Angular\Js\jquery.js" />
     <Content Include="Angular\Js\ngDialog.js" />
     <Content Include="Angular\Style\bootstrap.css" />
+    <Content Include="Angular\Style\Home.css" />
     <Content Include="Angular\Style\Site.css" />
     <Content Include="Angular\Style\Style.css" />
+    <Content Include="Angular\Views\AddEditGirl.html" />
     <Content Include="Angular\Views\Error.html" />
     <Content Include="Angular\Views\Home.html" />
     <Content Include="Angular\Views\Index.html" />
     <Content Include="Angular\Views\Login.html" />
+    <Content Include="Angular\Views\Search.html" />
     <Content Include="Global.asax" />
     <Content Include="EmailVerifiedPage.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

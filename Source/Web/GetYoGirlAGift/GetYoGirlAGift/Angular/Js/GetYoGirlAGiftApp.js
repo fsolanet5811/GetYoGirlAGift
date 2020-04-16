@@ -50,24 +50,21 @@ getYoGirlAGiftApp.config(
                     }
                 })
 
-
-                .state("search", {
-                    url: "/search",
-                    controller: 'SearchController',
+                .state("addEditGirl", {
+                    url: "/edit",
+                    controller: 'AddEditGirlController',
                     //template: "<h2>caca</h2>",
-                    templateUrl: '/Angular/Views/search.html',
-                    controllerAs: 'searchCtrl',
+                    templateUrl: '/Angular/Views/AddEditGirl.html',
+                    controllerAs: 'addEditGirlCtrl',
                     params: {
-                        response: null
+                        selectedGirl: null
                     },
                     //resolve: { authenticate: authenticate}
                     resolve: {
                         authorize: ['$window', '$rootScope', '$location', '$q', function ($window, $rootScope, $location, $q) {
                             var deferred = $q.defer();
                             if ($rootScope.user) {
-                                if ($rootScope.user.IsAuthenticated) {
-                                    return deferred.resolve({});
-                                }
+                               return deferred.resolve({});   
                             }
                             $window.location.href = '/#!/Login';
                             deferred.reject();
@@ -75,6 +72,30 @@ getYoGirlAGiftApp.config(
                         }]
                     }
                 })
+
+                .state("search", {
+                    url: "/search",
+                    controller: 'SearchController',
+                    //template: "<h2>caca</h2>",
+                    templateUrl: '/Angular/Views/Search.html',
+                    controllerAs: 'searchCtrl',
+                    params: {
+                        selectedGirl: null
+                    },
+                    //resolve: { authenticate: authenticate}
+                    resolve: {
+                        authorize: ['$window', '$rootScope', '$location', '$q', function ($window, $rootScope, $location, $q) {
+                            var deferred = $q.defer();
+                            if ($rootScope.user) {
+                               return deferred.resolve({});   
+                            }
+                            $window.location.href = '/#!/Login';
+                            deferred.reject();
+                            return deferred.promise;
+                        }]
+                    }
+                })
+
 
             $urlRouterProvider.otherwise('login');
 

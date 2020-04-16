@@ -20,53 +20,46 @@ getYoGirlAGiftApp.controller('HomeController', [
             ShowMessage();
         }
 
+        $rootScope.relationships = [{Id: 0, Name: 'Wife'}, {Id: 1, Name: 'Girlfriend'}];
+
         $scope.processing = false;
-
-        $rootScope.GetGirls = function (inspectionID) {
-            $scope.gettingGirls = true;
-            var servCall = MapMGRService.GetBatchInfos(inspectionID);
-            servCall.then(function (response) {
-                inspectionInfo = response.data;
-                angular.forEach($rootScope.inspections.data, function (value, key) {
-                    if (value.ID == inspectionInfo.ID) {
-                        value.BatchInfos = inspectionInfo.BatchInfos;
-                        value.AuditBatchInfos = inspectionInfo.AuditBatchInfos;
-                    }
-                });
-                $scope.gettingBatches = false;
-            }, function (error) {
-                $scope.gettingBatches = false;
-                ShowMessage("Error", 'Error getting batches from the system: ' + error.data.ExceptionMessage, '');
-            })
-        }
-
-
-
-        if ($rootScope.ExpandedInspections == undefined) {
-            $rootScope.ExpandedInspections = [];  // Holds the IDs of the inspections that are to be shown in expanded mode
-        }
-
-        $scope.ExpandedInspectionID = 0;  // holds the id of the inspection being expanded or colapsed
 
         if ($rootScope.home.showDowns == undefined) $rootScope.home.showDowns = true;
 
-        function GetGirls() {
+        $rootScope.GetGirls = function() {
             $scope.ShowLoading("Loading girls...")
-            var servCall = $http.get($rootScope.baseUrl + '/api/girls/foruser/' + $rootScope.user.Id);
-            servCall.then(function (response) {
+            $http({
+                method: 'GET',
+                headers: {
+                    'Authorization': 'bearer ' + $rootScope.token
+                },
+                url: $rootScope.baseUrl + '/api/girls/foruser/' + $rootScope.user.Id,
+
+
+            })
+            .then(function (response) {
                 $rootScope.user.Girls = response.data;
                 $scope.processing = false;
             }, function (error) {
                 $scope.gettingJobs = false;
                 ShowMessage("Error", 'Error getting Girls: ' + error.data.ExceptionMessage, '');
-            })
+            });
         }
 
         
+        $scope.GoToGiftSearchPage = function () {
+            $state.go('search', { selectedGirl: $scope.selectedGirl });
+        }
+
+        $scope.CardClicked = function (girl) {
+            $scope.selectedGirl = girl;
+            $scope.GoToGiftSearchPage();
+        }
+
         // Inspection level actions
-        $scope.EditGirl = function (r) {
-            $scope.selectedInspection = angular.copy(r);
-            //$scope.selectedInspection = r;
+        $rootScope.EditGirl = function (r) {
+            $scope.selectedGirl = angular.copy(r);
+            //$scope.selectedGirl = r;
             $scope.goToAddEditGirl();
         }
 
@@ -76,7 +69,7 @@ getYoGirlAGiftApp.controller('HomeController', [
         }
 
         $scope.goToAddEditGirl = function () {
-            $state.go('addEditGirl', { inspection: $scope.selectedGirl });
+            $state.go('addEditGirl', { selectedGirl: $scope.selectedGirl });
         }
 
         // Inspection Confirmation Functions
@@ -116,7 +109,7 @@ getYoGirlAGiftApp.controller('HomeController', [
         }
 
         $scope.GoToGiftSearchPage = function (g) {
-             
+          $state.go('search', { selectedGirl: $scope.selectedGirl });
         }
 
         $scope.ShowLoading = function (msg) {

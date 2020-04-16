@@ -1,0 +1,72 @@
+﻿
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#modalDialog").on('shown.bs.modal', function () {
+            $(this).find('input[type="text"]').focus();
+        });
+    });
+</script>
+
+<table>
+    <tr>
+        <td>
+            <label>Name:</label>
+            <input style="margin-bottom: 10px;" class="form-control" ng-model="selectedGirl.Name"/>
+            <label>Relationship:</label>
+            <select style="margin-bottom: 10px;" class="form-control" ng-model="selectedGirl.Relationship">
+                <option class="form-control" ng-repeat="r in relationships" ng-value="{{r.Id}}">{{r.Name}}</option>
+            </select>
+            <label>Interests:</label>
+            <br/>
+            <input style="margin-bottom: 10px; display: inline !important" class="form-control" ng-model="newInterest"/>
+            <button class="btn btn-info" ng-click="AddInterest()">Add</button>
+            <table>
+                <tr ng-repeat="i in selectedGirl.Interests">
+                    <td>
+                        <label>{{i.Value}}</label>
+                    </td>
+                    <td style="text-align: right;">
+                        <img src="/Angular/Images/redx.png" style="width: 25px; height: 25px;" ng-click="RemoveInterest(i)"/>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td style="padding-left: 20px;">
+            <img style="width:300px" ng-src="data:image/JPEG;base64,{{selectedGirl.Images[0].Image}}"/>
+            
+            <button for="imageFileField" class="btn btn-info">
+                <label for="imageFileField"
+                                   style="cursor: pointer; border: none; padding: 0px !important; margin: 0px !important">
+                                Upload New Image
+                            </label>
+            </button>
+            <input type="file" image-file-model="imageFiles" class="btn blue-bg" id="imageFileField"
+                                   style="visibility:hidden; height: 1px" multiple name="images"
+                                   9ng-disabled="pushpinFilestatus.indexOf('Loading...') > -1" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button class="btn btn-danger" ng-click="GoToHomePage(false)">Cancel</button>
+            <button class="btn btn-info" ng-click="SaveGirl()">Ok</button>
+        </td>
+    </tr>
+    <tr ng-show="processing">
+        <td colspan="2" style="text-align: center; border-bottom: 1px solid lightgray;">
+            <img alt="" src="/Angular/Images/loader.gif" style="height: 40px;" />
+            <br />
+            <strong style="color: darkgreen">Saving...</strong>
+        </td>
+    </tr>
+</table>
+
+<div id="divLoading" style="vertical-align:middle; " ng-show="processing ">
+    <table style="width: 100%; height: 100%">
+        <tr>
+            <td style="text-align: center;vertical-align:middle; width: 100%">
+                <img alt="" src="/Angular/Images/loader.gif"/><br /><h4 style="color: darkslategrey">{{msg}}</h4>
+            </td>
+        </tr>
+    </table>
+</div>
