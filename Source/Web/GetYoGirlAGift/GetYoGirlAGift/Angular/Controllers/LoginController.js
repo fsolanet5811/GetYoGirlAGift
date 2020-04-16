@@ -52,14 +52,13 @@ getYoGirlAGiftApp.controller('LoginController', ['$scope', '$rootScope', '$state
                     $state.go('home');
                 }
                 else {
-                    $rootScope.user.Message = response.data.Message;
-                    $state.go('login');
+                    $scope.errorMessage = 'Login failed';
                     $scope.processing = false;
                 }
             }, function (error) {
                 //$rootScope.user = {};
-                $rootScope.user.Message = error.data.ExceptionMessage;
-                $state.go('login');
+                console.log(error);
+                $scope.errorMessage = 'Login failed';
                 $scope.processing = false;
             });
         }

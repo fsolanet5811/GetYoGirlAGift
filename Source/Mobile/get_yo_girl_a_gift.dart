@@ -246,8 +246,8 @@ class Interest
 
 	Interest._fromJson(dynamic json)
 	{
-		id = json['id'];
-		value = json['value'];
+		id = json['Id'];
+		value = json['Value'];
 	}
 
 	Map<String, dynamic> _toJson()

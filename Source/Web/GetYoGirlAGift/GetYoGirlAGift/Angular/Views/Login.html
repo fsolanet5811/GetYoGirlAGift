@@ -25,7 +25,7 @@
                             <div class="form-group" style="width: 200px" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                                 <label for="username">Username</label><br />
                                 <input type="text" name="username" id="username" class="form-control" ng-model="user.Username" required
-                                       ng-change="user.Message = ''" focus-me/>
+                                       ng-change="errorMessage = ''" focus-me/>
                                 <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
                             </div>
                             <br />
@@ -33,9 +33,10 @@
                             <div class="form-group" style="width: 200px" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
                                 <label for="password">Password</label><br />
                                 <input type="password" name="password" id="password" class="form-control" ng-model="user.Password" required
-                                       ng-change="user.Message = ''" />
+                                       ng-change="errorMessage = ''" />
                                 <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
                             </div>
+                            <label>{{errorMessage}}</label>
                             <div class="form-actions" style="margin-top: 20px">
                                 <table style="width:100%;">
                                     <tr>
