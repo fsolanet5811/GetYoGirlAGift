@@ -12,9 +12,6 @@ getYoGirlAGiftApp.controller('LoginController', ['$scope', '$rootScope', '$state
 
         var user = {};
         $rootScope.user = user;
-        $rootScope.user.Username = "boo";
-        $rootScope.user.Password = "myPassword";
-
         var home = {};
         $rootScope.home = home;
 		$scope.processing = false;
