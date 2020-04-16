@@ -26,6 +26,19 @@ getYoGirlAGiftApp.config(
                     //]}
                 })
 
+                .state("signup", {
+                    url: '/signup',
+                    controller: 'SignupController',
+                    // template: "<h2>caca</h2>",
+                    templateUrl: '/Angular/Views/Signup.html',
+                    controllerAs: 'signupCtrl',
+                    //resolve: {
+                    //    GetUser: [function ($rootScope)
+                    //    {
+                    //        return $rootScope.user;
+                    //    }
+                    //]}
+                })
 
                 .state("home", {
                     url: "/home",

@@ -202,6 +202,7 @@
     <Content Include="Angular\Controllers\HomeController.js" />
     <Content Include="Angular\Controllers\LoginController.js" />
     <Content Include="Angular\Controllers\SearchController.js" />
+    <Content Include="Angular\Controllers\SignupController.js" />
     <Content Include="Angular\Images\loader.gif" />
     <Content Include="Angular\Images\plus.png" />
     <Content Include="Angular\Images\redx.png" />
@@ -229,6 +230,7 @@
     <Content Include="Angular\Views\Index.html" />
     <Content Include="Angular\Views\Login.html" />
     <Content Include="Angular\Views\Search.html" />
+    <Content Include="Angular\Views\Signup.html" />
     <Content Include="Global.asax" />
     <Content Include="EmailVerifiedPage.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

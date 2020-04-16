@@ -20,7 +20,30 @@ getYoGirlAGiftApp.controller('HomeController', [
             ShowMessage();
         }
 
-        $rootScope.relationships = [{Id: 0, Name: 'Wife'}, {Id: 1, Name: 'Girlfriend'}];
+        $rootScope.relationships = [
+            {Id: 0, Name: 'Wife'}, 
+            {Id: 1, Name: 'Girlfriend'}, 
+            {Id: 2, Name: 'Sister'}, 
+            {Id: 3, Name: 'Mother'}, 
+            {Id: 4, Name: 'Grandmother'}, 
+            {Id: 5, Name: 'Daughter'}, 
+            {Id: 6, Name: 'Granddaughter'}, 
+            {Id: 7, Name: 'Friend'},
+            {Id: 8, Name: 'Cousin'}, 
+            {Id: 9, Name: 'Aunt'},
+            {Id: 10, Name: 'Niece'}, 
+            {Id: 11, Name: 'Other'}
+        ];
+
+        $rootScope.RelationshipFromNumber = function(num) {
+            for(var i = 0; i < $rootScope.relationships.length; i++) {
+                if($rootScope.relationships[i].Id == num) {
+                    return $rootScope.relationships[i].Name;
+                }
+            }
+
+            return "Other";
+        }
 
         $scope.processing = false;
 
@@ -52,6 +75,7 @@ getYoGirlAGiftApp.controller('HomeController', [
         }
 
         
+
         $scope.GoToGiftSearchPage = function () {
             $state.go('search', { selectedGirl: $scope.selectedGirl });
         }

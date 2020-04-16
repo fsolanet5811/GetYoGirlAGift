@@ -65,7 +65,9 @@ getYoGirlAGiftApp.controller('LoginController', ['$scope', '$rootScope', '$state
             });
         }
 
-        
+        $scope.GoToSignupPage = function() {
+            $state.go('signup');
+        }
 		
 		function getToken(){
 			$scope.ShowLoading("Loading...");

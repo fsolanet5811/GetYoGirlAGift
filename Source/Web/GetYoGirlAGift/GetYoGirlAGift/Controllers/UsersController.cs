@@ -231,7 +231,7 @@ namespace GetYoGirlAGift.Controllers
                             where u.Username == request.Username && u.Password == request.Password
                             select u).FirstOrDefault();
 
-                return Ok(new { Success = user != null, User = user });
+                return Ok(new { Success = user != null && user.IsEmailVerified, User = user });
             }
             catch(Exception ex)
             {
