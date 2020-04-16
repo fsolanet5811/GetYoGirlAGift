@@ -246,6 +246,7 @@
     <Content Include="Swagger\swagger-ui-standalone-preset.js" />
     <Content Include="Swagger\swagger-ui.css" />
     <Content Include="Swagger\swagger-ui.js" />
+    <Content Include="Tester.js" />
     <Content Include="VerificationEmailBody.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

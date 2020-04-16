@@ -7,7 +7,8 @@
   },
   "host": "getyogirlagift.azurewebsites.net",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/token": {
@@ -52,7 +53,15 @@
                   "type": "integer"
                 }
               }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
             }
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "URL Not Found"
@@ -99,10 +108,15 @@
                   "$ref": "#/definitions/User"
                 }
               }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
             }
           },
           "400": {
-            "description": "URL Not Found"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Authentication not sent or invalid"
@@ -114,6 +128,9 @@
                 "type": "string"
               }
             }
+          },
+          "404": {
+            "description": "URL Not Found"
           }
         }
       }
@@ -160,7 +177,7 @@
             }
           },
           "400": {
-            "description": "URL Not Found"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Authentication not sent or invalid"
@@ -172,6 +189,9 @@
                 "type": "string"
               }
             }
+          },
+          "404": {
+            "description": "URL Not Found"
           }
         }
       }
@@ -215,7 +235,7 @@
             }
           },
           "400": {
-            "description": "URL Not Found"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Authentication not sent or invalid"
@@ -227,6 +247,9 @@
                 "type": "string"
               }
             }
+          },
+          "404": {
+            "description": "URL Not Found"
           }
         }
       }
@@ -267,7 +290,7 @@
             }
           },
           "400": {
-            "description": "URL Not Found"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Authentication not sent or invalid"
@@ -279,6 +302,9 @@
                 "type": "string"
               }
             }
+          },
+          "404": {
+            "description": "URL Not Found"
           }
         }
       }
@@ -322,7 +348,7 @@
             }
           },
           "400": {
-            "description": "URL Not Found"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Authentication not sent or invalid"
@@ -334,6 +360,9 @@
                 "type": "string"
               }
             }
+          },
+          "404": {
+            "description": "URL Not Found"
           }
         }
       },
@@ -374,7 +403,7 @@
             }
           },
           "400": {
-            "description": "URL Not Found"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Authentication not sent or invalid"
@@ -386,6 +415,9 @@
                 "type": "string"
               }
             }
+          },
+          "404": {
+            "description": "URL Not Found"
           }
         }
       },
@@ -424,7 +456,7 @@
             }
           },
           "400": {
-            "description": "URL Not Found"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Authentication not sent or invalid"
@@ -436,6 +468,9 @@
                 "type": "string"
               }
             }
+          },
+          "404": {
+            "description": "URL Not Found"
           }
         }
       }
@@ -486,7 +521,7 @@
             }
           },
           "400": {
-            "description": "URL Not Found"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Authentication not sent or invalid"
@@ -498,6 +533,9 @@
                 "type": "string"
               }
             }
+          },
+          "404": {
+            "description": "URL Not Found"
           }
         }
       },
@@ -547,7 +585,7 @@
             }
           },
           "400": {
-            "description": "URL Not Found"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Authentication not sent or invalid"
@@ -559,6 +597,9 @@
                 "type": "string"
               }
             }
+          },
+          "404": {
+            "description": "URL Not Found"
           }
         }
       }
@@ -635,13 +676,7 @@
         "IsNew": {
           "type": "boolean"
         }
-      },
-      "required": [
-        "Id",
-        "GirlId",
-        "Image",
-        "IsNew"
-      ]
+      }
     },
     "ImportantDate": {
       "type": "object",
@@ -758,12 +793,7 @@
         "Currency": {
           "type": "string"
         }
-      },
-      "required": [
-        "Name",
-        "Value",
-        "Currency"
-      ]
+      }
     },
     "Rating": {
       "type": "object",
@@ -780,12 +810,7 @@
           "type": "integer",
           "format": "double"
         }
-      },
-      "required": [
-        "Likability",
-        "ReturnChance",
-        "FriendsJealousy"
-      ]
+      }
     },
     "Gift": {
       "type": "object",
@@ -812,14 +837,7 @@
         "Rating": {
           "$ref": "#/definitions/Rating"
         }
-      },
-      "required": [
-        "Name",
-        "Prices",
-        "Picture",
-        "AmazonLink",
-        "Rating"
-      ]
+      }
     }
   },
   "securityDefinitions": {
