@@ -15,7 +15,9 @@ getYoGirlAGiftApp.controller('LoginController', ['$scope', '$rootScope', '$state
         var home = {};
         $rootScope.home = home;
 		$scope.processing = false;
-		
+        
+        $scope.errorMessage = '';
+
 		getToken();
 
         $scope.login = function () {

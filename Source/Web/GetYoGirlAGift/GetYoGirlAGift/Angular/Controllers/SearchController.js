@@ -27,6 +27,7 @@
 			}
 
 			$scope.SearchGifts = function () {
+				$scope.msg = 'Searching the comsos...'
 				$scope.processing = true;
 				$http({
 					method: 'GET',
@@ -49,10 +50,6 @@
 
 			$scope.GoToHomePage = function(wasGirlChanged) {
 				$state.go('home');
-				if(wasGirlChanged) {
-					// Get the new girls from the database if they changed.
-					$rootScope.GetGirls();
-				}
 			}
 
 		}])

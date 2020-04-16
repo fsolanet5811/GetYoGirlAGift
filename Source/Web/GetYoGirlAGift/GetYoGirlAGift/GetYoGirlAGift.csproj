@@ -290,7 +290,7 @@
     <Content Include="Swagger\swagger-ui-standalone-preset.js.map" />
     <Content Include="Swagger\swagger-ui.css.map" />
     <Content Include="Swagger\swagger-ui.js.map" />
-    <Content Include="Swagger\swagger.yaml" />
+    <Content Include="Swagger\swagger.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

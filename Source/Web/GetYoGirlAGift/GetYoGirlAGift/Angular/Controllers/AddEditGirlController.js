@@ -66,6 +66,7 @@
 			}
 
 			function AddGirl(girl) {
+				$scope.msg = 'Saving...'
 				$scope.processing = true;
 				girl.UserId = $rootScope.user.Id;
 				$http({
@@ -87,6 +88,7 @@
 			}
 
 			function UpdateGirl(girl) {
+				$scope.msg = 'Saving...'
 				$scope.processing = true;
 				$http({
 					method: 'Put',

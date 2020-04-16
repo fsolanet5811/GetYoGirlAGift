@@ -1,6 +1,6 @@
 ﻿<div class="panel panel-success" style="border-color:#333; box-shadow: 3px 3px 8px black;">
     <div class="panel-heading center-controls" style="background-color:#333; border-color: #333; color: white">
-        <strong style="font-size:larger">Yo Girl's Information</strong>
+        <strong style="font-size:larger">Yo Girl's Gifts</strong>
     </div>
     <div class="panel panel-default" style="margin-bottom: 0px; border: none">
         <div class="panel-body">
@@ -12,10 +12,10 @@
                                     Occassion:
                                 </label>
                                 <input class="form-control" ng-model="occassion"/>
-                                <button ng-click="SearchGifts()">Search</button>
+                                <button style="margin-top: 30px;" class="btn btn-info" ng-click="SearchGifts()">Search</button>
                             </td>
                             <td>
-                                <img style="max-width: 300px; max-height: 300px;" ng-src="data:image/JPEG;base64,{{selectedGirl.Images[0].Image}}"/>
+                                <img style="margin-left: 200px; max-width: 300px; max-height: 300px;" ng-src="data:image/JPEG;base64,{{selectedGirl.Images[0].Image}}"/>
                             </td>
                         </tr>
                     </table>                   
@@ -28,7 +28,7 @@
                                 <td>
                                     <label style="max-width: 400px;">{{g.Name}}</label>
                                     <br/>
-                                    <label>{{g.Prices[0].Currency + g.Prices[0].Value}}</label>
+                                    <label>{{g.Prices[0].Currency + ' ' + g.Prices[0].Value}}</label>
                                     <br/>
                                     <a href="{{g.AmazonLink}}">{{g.AmazonLink}}</label>
                                 </td>
@@ -44,6 +44,7 @@
                             </tr>
                         </table>
                     </div>
+                    <button ng-click="GoToHomePage()" class="btn btn-danger" style="margin-top: 50px;">Back</button>
                 </div>
         </div>
     </div>
