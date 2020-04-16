@@ -204,6 +204,7 @@
     <Content Include="Angular\Controllers\SearchController.js" />
     <Content Include="Angular\Controllers\SignupController.js" />
     <Content Include="Angular\Images\gift.png" />
+    <Content Include="Angular\Images\gift_background.jpg" />
     <Content Include="Angular\Images\loader.gif" />
     <Content Include="Angular\Images\obsessive_girl.jpg" />
     <Content Include="Angular\Images\plus.png" />
