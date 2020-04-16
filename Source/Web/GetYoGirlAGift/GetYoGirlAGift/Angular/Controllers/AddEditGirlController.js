@@ -1,4 +1,4 @@
-﻿getYoGirlAGiftApp.controller('AddEditGirlController', [
+getYoGirlAGiftApp.controller('AddEditGirlController', [
     '$scope'
     , '$filter'
     , '$rootScope'
@@ -112,11 +112,11 @@
 			}
 
 			$scope.GoToHomePage = function(wasGirlChanged) {
-				$state.go('home');
-				if(wasGirlChanged) {
-					// Get the new girls from the database if they changed.
-					$rootScope.GetGirls();
-				}
+            if (wasGirlChanged) {
+              // Get the new girls from the database if they changed.
+              $rootScope.GetGirls();
+            }
+            $state.go('home');
 			}
 
 		}])
