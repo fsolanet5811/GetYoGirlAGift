@@ -328,7 +328,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Public\swagger.yaml" />
+    <Content Include="Public\swagger.yaml">
+      <BrowseToURL>http://getyogirlagift.azurewebsites.net/swagger.yaml</BrowseToURL>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
